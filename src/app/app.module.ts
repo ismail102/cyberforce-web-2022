@@ -12,7 +12,7 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([{ path: '', component: HomeComponent }]),
+    RouterModule.forRoot([{ path: '', component: AppComponent }]),
   ],
   declarations: [AppComponent, HomeComponent, HeaderComponent, FooterComponent],
   bootstrap: [AppComponent],
