@@ -15,6 +15,18 @@ const routes: Routes = [
     path: 'contact',
     component: ContactUsComponent,
   },
+  {
+    path: 'manufacturing',
+    component: ContactUsComponent,
+  },
+  {
+    path: 'solar-gen',
+    component: ContactUsComponent,
+  },
+  {
+    path: 'login',
+    component: ContactUsComponent,
+  },
 ];
 
 @NgModule({
