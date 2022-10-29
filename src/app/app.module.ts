@@ -8,6 +8,9 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { LoginComponent } from './login/login.component';
+import { ManufacturingComponent } from './manufacturing/manufacturing.component';
+import { SolarGenComponent } from './solar-gen/solar-gen.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,15 +20,15 @@ const routes: Routes = [
   },
   {
     path: 'manufacturing',
-    component: ContactUsComponent,
+    component: ManufacturingComponent,
   },
   {
     path: 'solar-gen',
-    component: ContactUsComponent,
+    component: SolarGenComponent,
   },
   {
     path: 'login',
-    component: ContactUsComponent,
+    component: LoginComponent,
   },
 ];
 
@@ -37,6 +40,9 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     ContactUsComponent,
+    LoginComponent,
+    ManufacturingComponent,
+    SolarGenComponent,
   ],
   bootstrap: [AppComponent],
 })
