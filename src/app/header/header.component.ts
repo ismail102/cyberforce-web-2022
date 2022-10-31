@@ -23,6 +23,4 @@ export class HeaderComponent implements OnInit {
   setDefaultText(data: string) {
     this.defaultText = data;
   }
-
-  setLastValueInHeader() {}
 }

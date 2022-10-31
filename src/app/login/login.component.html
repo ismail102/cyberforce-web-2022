@@ -1,5 +1,4 @@
-<div *ngIf="defaultText !== 'Admin'" class="container">
-  {{ defaultText }}
+<div *ngIf="defaultText === 'Login'" class="container">
   <div class="card">
     <div class="card-body">
       <div class="card">
@@ -33,34 +32,33 @@
 </div>
 
 <div *ngIf="defaultText === 'Admin'" class="container">
-  <div class="card">
+  <div class="card" style="width: 100%;">
     <div class="card-body">
       <div class="card">
-        <div class="card-body">
-          <p class="card-text">FTP Server</p>
-          <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
-            <div class="mb-3">
-              <label for="userNameInput" class="form-label">User Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="userNameInput"
-                formControlName="userNameInput"
-              />
+        <p class="card-text">FTP Server View</p>
+        <ul *ngFor="let file of files" class="list-group">
+          <div class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <div>{{ file.name }}</div>
+              <div>
+                <span
+                  class="
+                    d-inline-flex
+                    align-items-center
+                    justify-content-center
+                    text-white
+                    rounded-circle
+                    m-1
+                    me-2
+                  "
+                  style="background-color: #0082ca; width: 40px; height: 40px;"
+                >
+                  <i class="bi bi-download"></i>
+                </span>
+              </div>
             </div>
-            <div class="mb-3">
-              <label for="passwordInput" class="form-label">Password</label>
-              <input
-                type="password"
-                class="form-control"
-                id="passwordInput"
-                formControlName="passwordInput"
-              />
-            </div>
-            <button type="submit" class="btn btn-primary mb-3">Submit</button>
-          </form>
-        </div>
-        <div class="card-body"></div>
+          </div>
+        </ul>
       </div>
     </div>
   </div>
