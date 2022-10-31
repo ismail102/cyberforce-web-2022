@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   defaultText: string;
   files: any[];
+  emails: any[];
 
   constructor(private fb: FormBuilder, private sharedService: SharedService) {}
 
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
     this.defaultText = userName;
     this.sharedService.setLastValueInHeader(this.defaultText);
     this.getFilesFromServer();
+    this.getEmailsFromServer();
   }
 
   getFilesFromServer() {
@@ -49,6 +51,42 @@ export class LoginComponent implements OnInit {
       },
       {
         name: 'CFC_Blue_Team_Website_Requirements_2022.pdf',
+        isAvailable: true,
+      },
+    ];
+  }
+
+  getEmailsFromServer() {
+    this.emails = [
+      {
+        id: 'email-1',
+        title: '[CyberForce-Participants] Login issues',
+        text: `[EXTERNAL EMAIL ALERT]: Verify sender before opening links or attachments.
+
+        We are aware of the login issues. Please refrain from trying multiple times. We will resend credentials in the morning. Please be sure to get yourself on discord as moving forward I will not be sending emails. Communications are done via Discord for this competition as well as help
+        
+        Thank you,
+        Amanda L Theel
+        
+        Sent from my iPhone
+        `,
+        isAvailable: true,
+      },
+      {
+        id: 'email-2',
+        title:
+          'Preparation for CyberForce 2022 Competition | CyberSalukis | Meeting # 2',
+        text: `Hi Everyone, Good Morning!
+
+        I have attached the notes (posted in our Discord server as well) from the last meeting and updated our OneDrive folder. Please let me know if anyone has any issue accessing that folder.
+        
+        As we are yet to get access to the competition environment, let's postpone today's meeting. Although if we are given access by today afternoon, I will be up for a meeting later today.
+        
+        But I would prefer an in-person meetup tomorrow at or around 05:30 PM at EGR A0321/A0409D. Please email using 'Reply to All' or text on our Discord server for any preference or issues regarding the meeting.
+        
+        
+        @Spencer, Trenton D, Could you kindly review the meeting notes and update where required?
+        `,
         isAvailable: true,
       },
     ];
