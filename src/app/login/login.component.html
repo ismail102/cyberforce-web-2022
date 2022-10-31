@@ -4,15 +4,27 @@
       <div class="card">
         <div class="card-body">
           <p class="card-text">Login</p>
-          <div class="mb-3">
-            <label for="userNameInput" class="form-label">User Name</label>
-            <input type="text" class="form-control" id="userNameInput" />
-          </div>
-          <div class="mb-3">
-            <label for="passwordInput" class="form-label">Password</label>
-            <input type="password" class="form-control" id="passwordInput" />
-          </div>
-          <button type="submit" class="btn btn-primary mb-3">Submit</button>
+          <form (ngSubmit)="loginSubmit()">
+            <div class="mb-3">
+              <label for="userNameInput" class="form-label">User Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="userNameInput"
+                formControlName="userNameInput"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="passwordInput" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="passwordInput"
+                formControlName="passwordInput"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+          </form>
         </div>
       </div>
     </div>
