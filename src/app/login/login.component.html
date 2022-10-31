@@ -39,22 +39,12 @@
         <ul *ngFor="let file of files" class="list-group">
           <div class="list-group-item">
             <div class="d-flex justify-content-between">
-              <div>{{ file.name }}</div>
+              <div class="overflow-hidden">{{ file.name }}</div>
               <div>
-                <span
-                  class="
-                    d-inline-flex
-                    align-items-center
-                    justify-content-center
-                    text-white
-                    rounded-circle
-                    m-1
-                    me-2
-                  "
-                  style="background-color: #0082ca; width: 40px; height: 40px;"
-                >
-                  <i class="bi bi-download"></i>
-                </span>
+                <img
+                  *ngIf="file.isAvailable === true"
+                  src="assets/icon-download.svg"
+                />
               </div>
             </div>
           </div>
