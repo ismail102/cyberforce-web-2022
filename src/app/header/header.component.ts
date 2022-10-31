@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +10,19 @@ import { LoginComponent } from '../login/login.component';
 export class HeaderComponent implements OnInit {
   defaultText: string;
 
-  constructor() {}
-  @ViewChild(LoginComponent) loginComponent: any;
+  constructor(private sharedService: SharedService) {}
+  @ViewChild(LoginComponent) private loginComponent: LoginComponent;
 
   ngOnInit(): void {
     this.defaultText = 'Login';
+    this.sharedService.user.subscribe((data: string) => {
+      this.defaultText = data;
+    });
   }
+
   setDefaultText(data: string) {
     this.defaultText = data;
   }
+
+  setLastValueInHeader() {}
 }
