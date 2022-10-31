@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,18 +7,33 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  userForm: FormGroup;
+  loginForm: FormGroup;
+  defaultText: string;
 
-  constructor(public fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {}
 
+  @Output() eventEmitter = new EventEmitter<any>();
   ngOnInit(): void {
-    // this.loginForm = this.fb.group({
-    //   userNameInput: [''],
-    //   passwordInput: [''],
-    // });
+    this.defaultText = 'Login';
+    this.loginForm = this.fb.group({
+      userNameInput: [''],
+      passwordInput: [''],
+    });
   }
 
   loginSubmit() {
-    // let userName = this.loginFrom.controls.userNameInput.value;
+    let userName = this.loginForm.controls['userNameInput'].value;
+    let password = this.loginForm.controls['passwordInput'].value;
+
+    if (userName === 'Admin') {
+      this.defaultText = 'Admin';
+      this.eventEmitter.emit('Admin');
+    } else {
+      this.defaultText = userName;
+      this.eventEmitter.emit(userName);
+    }
+  }
+  getFormControls() {
+    return this.loginForm.controls;
   }
 }
