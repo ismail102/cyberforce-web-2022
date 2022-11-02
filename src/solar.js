@@ -4,7 +4,7 @@ function createRouter(db) {
   const router = express.Router();
   const owner = '';
 
-  router.get('/solar', function (req, res, next) {
+  router.get('/api/solar', function (req, res, next) {
     // db.query(
     //   'SELECT solarStatus, arrayVoltage FROM solar_arrays',
     //   //   [owner, 10*(req.params.page || 0)],
