@@ -5,9 +5,9 @@ const mysql = require('mysql');
 const events = require('./solar');
 
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
+  host: '10.0.108.76',
+  user: 'blue108',
+  password: 'System-Unwary-Random-Canister9',
   database: 'solar',
 });
 
