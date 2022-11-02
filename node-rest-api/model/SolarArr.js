@@ -1,5 +1,5 @@
-const mysql = require('mysql');
-const Schema = mongoose.Schema;
+const mysql = require('mysql-schema');
+const Schema = mysql.Schema;
 let SolarArr = new Schema(
   {
     arrayID: {
