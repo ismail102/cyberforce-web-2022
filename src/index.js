@@ -50,11 +50,7 @@ app.use(bodyParser.json());
 // // Listen on enviroment port or 5000
 // app.listen(port, () => console.log(`Listening on port ${port}`));
 
-var dport = app.get('port');
-app.listen(dport, function () {
-  console.log('App is running at http://localhost:' + dport + '/');
-  console.log('--->Hit CRTL-C to stop the node server.  ');
-});
+// var dport = app.get('port');
 
 const pool = mysql.createPool({
   connectionLimit: 10,
@@ -85,4 +81,9 @@ app.get('/api/solar-arr', (req, res) => {
       console.log('The data from beer table are: \n', rows);
     });
   });
+});
+
+app.listen(port, function () {
+  console.log('App is running at http://localhost:' + port + '/');
+  console.log('--->Hit CRTL-C to stop the node server.  ');
 });
