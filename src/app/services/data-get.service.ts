@@ -18,10 +18,7 @@ export class DataGetService {
   // Http Header
   httpHeaders = new HttpHeaders()
     .set('Content-Type', 'application/json')
-    .set(
-      'Access-Control-Allow-Origin',
-      'http://10.0.108.76:8080/api/solar-arr'
-    );
+    .set('Access-Control-Allow-Origin', 'http://10.0.108.79:4200');
 
   // Get Data
   getFiles(): Observable<any> {
