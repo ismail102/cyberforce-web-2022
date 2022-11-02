@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { DataGetService } from '../services/data-get.service';
 import { SharedService } from '../services/shared.service';
 
 @Component({
@@ -13,7 +14,11 @@ export class LoginComponent implements OnInit {
   files: any[];
   emails: any[];
 
-  constructor(private fb: FormBuilder, private sharedService: SharedService) {}
+  constructor(
+    private fb: FormBuilder,
+    private sharedService: SharedService,
+    private dataGetService: DataGetService
+  ) {}
 
   @Output() eventEmitter = new EventEmitter<any>();
   ngOnInit(): void {
@@ -36,24 +41,27 @@ export class LoginComponent implements OnInit {
   }
 
   getFilesFromServer() {
-    this.files = [
-      {
-        name: 'CFC_Blue_Team_Website_Requirements_2022.pdf',
-        isAvailable: true,
-      },
-      {
-        name: 'Fake-Company-Logos - Copy.pptx',
-        isAvailable: true,
-      },
-      {
-        name: 'CyberForce_Competition_Blue_Team_AWS_and_VPN3.pdf',
-        isAvailable: true,
-      },
-      {
-        name: 'CFC_Blue_Team_Website_Requirements_2022.pdf',
-        isAvailable: true,
-      },
-    ];
+    this.dataGetService.getFiles().subscribe((data: any) => {
+      this.files = data;
+    });
+    // this.files = [
+    //   {
+    //     name: 'CFC_Blue_Team_Website_Requirements_2022.pdf',
+    //     isAvailable: true,
+    //   },
+    //   {
+    //     name: 'Fake-Company-Logos - Copy.pptx',
+    //     isAvailable: true,
+    //   },
+    //   {
+    //     name: 'CyberForce_Competition_Blue_Team_AWS_and_VPN3.pdf',
+    //     isAvailable: true,
+    //   },
+    //   {
+    //     name: 'CFC_Blue_Team_Website_Requirements_2022.pdf',
+    //     isAvailable: true,
+    //   },
+    // ];
   }
 
   getEmailsFromServer() {
