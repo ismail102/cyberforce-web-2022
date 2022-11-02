@@ -16,7 +16,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.defaultText = 'Login';
     this.sharedService.user.subscribe((data: string) => {
-      this.defaultText = data;
+      // console.log("EventEmitter: ", data);
+      if (data) {
+        this.defaultText = data;
+      } else {
+        this.defaultText = 'Login';
+      }
     });
   }
 
