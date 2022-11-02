@@ -1,10 +1,7 @@
 {
   "/api/*": {
-    "target": "http://10.0.108.79:8080",
+    "target": "http://10.0.108.76:8080",
     "secure": true,
-    "pathRewrite": {
-      "^/api": ""
-    },
     "changeOrigin": true,
     "logLevel": "debug"
   }
