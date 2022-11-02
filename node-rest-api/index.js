@@ -3,16 +3,34 @@ const path = require('path');
 const mysql = require('mysql');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-mysql
-  .connect('mysql://10.0.108.76:3306/solar')
-  .then((x) => {
-    console.log(
-      `Connected to Mongo! Database name: "${x.connections[0].name}"`
-    );
-  })
-  .catch((err) => {
-    console.error('Error connecting to mongo', err.reason);
-  });
+
+const connection = mysql.createConnection({
+  host: '10.0.108.76',
+  user: 'blue108',
+  password: 'System-Unwary-Random-Canister9',
+  database: 'solar',
+});
+
+connection.connect(function (error) {
+  if (error) {
+    throw error;
+  } else {
+    console.log('Connected to MySQL! Database name: solar');
+  }
+});
+
+module.exports = connection;
+// mysql
+//   .connect('mysql://10.0.108.76:3306/solar')
+//   .then((x) => {
+//     console.log(
+//       `Connected to Mongo! Database name: "${x.connections[0].name}"`
+//     );
+//   })
+//   .catch((err) => {
+//     console.error('Error connecting to mongo', err.reason);
+//   });
+
 const solarRoute = require('./routes/solar.routes');
 const app = express();
 app.use(bodyParser.json());
@@ -27,7 +45,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // API root
 app.use('/api', solarRoute);
 // PORT
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log('Listening on port ' + port);
 });
