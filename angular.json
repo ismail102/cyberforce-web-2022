@@ -62,7 +62,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "your-application-name:build",
+            "browserTarget": "cyberforce-web:build",
             "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
