@@ -5,10 +5,12 @@ let solarArr = require('../model/SolarArr');
 
 // Get all Book
 solarArrRoute.route('/solar-arr').get((req, res) => {
+  console.log('Res: ', res);
   solarArr.find((error, data) => {
     if (error) {
       return next(error);
     } else {
+      res.set('Access-Control-Allow-Origin', 'http://10.0.108.79:4200');
       res.json(data);
     }
   });
@@ -19,6 +21,7 @@ solarArrRoute.route('/solar-arr/:id').get((req, res) => {
     if (error) {
       return next(error);
     } else {
+      res.set('Access-Control-Allow-Origin', 'http://10.0.108.79:4200');
       res.json(data);
     }
   });
