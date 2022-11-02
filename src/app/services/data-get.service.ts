@@ -9,7 +9,7 @@ export class DataGetService {
   constructor(private http: HttpClient) {}
 
   getFiles(): Observable<any> {
-    const url = '/solar';
+    const url = '/api/solar';
     return this.http.get<any>(url).pipe(catchError(this.handleError));
     // return of([
     //   { name: 'ismail', isAvailable: true },
