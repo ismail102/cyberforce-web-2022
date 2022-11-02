@@ -1,6 +1,11 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -8,14 +13,30 @@ import { catchError, Observable, of, throwError } from 'rxjs';
 export class DataGetService {
   constructor(private http: HttpClient) {}
 
+  // Node/Express API
+  REST_API: string = 'http://10.0.108.76:8080/api';
+  // Http Header
+  httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+
+  // Get Data
   getFiles(): Observable<any> {
-    const url = '/api/solar';
-    return this.http.get<any>(url).pipe(catchError(this.handleError));
-    // return of([
-    //   { name: 'ismail', isAvailable: true },
-    //   { name: 'sai', isAvailable: true },
-    // ]);
+    let API_URL = `${this.REST_API}/solar-arr`;
+    return this.http.get(API_URL, { headers: this.httpHeaders }).pipe(
+      map((res: any) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
   }
+
+  // getFiles(): Observable<any> {
+  //   const url = '/api/solar';
+  //   return this.http.get<any>(url).pipe(catchError(this.handleError));
+  //   // return of([
+  //   //   { name: 'ismail', isAvailable: true },
+  //   //   { name: 'sai', isAvailable: true },
+  //   // ]);
+  // }
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
