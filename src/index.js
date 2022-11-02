@@ -31,13 +31,19 @@ const mysql = require('mysql');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Parsing middleware
-// Parse application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: false })); // Remove
-app.use(express.urlencoded({ extended: true })); // New
-// Parse application/json
-// app.use(bodyParser.json()); // Remove
-app.use(express.json()); // New
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+
+// // Parsing middleware
+// // Parse application/x-www-form-urlencoded
+// // app.use(bodyParser.urlencoded({ extended: false })); // Remove
+// app.use(express.urlencoded({ extended: true })); // New
+// // Parse application/json
+// // app.use(bodyParser.json()); // Remove
+// app.use(express.json()); // New
 
 // MySQL Code goes here
 
@@ -54,8 +60,12 @@ const pool = mysql.createPool({
 
 // Get all beers
 app.get('/api/solar-arr', (req, res) => {
+  console.log('Res: ', res);
   pool.getConnection((err, connection) => {
-    if (err) throw err;
+    if (err) {
+      console.log('!Error: ', err);
+      throw err;
+    }
     console.log('connected as id ' + connection.threadId);
     connection.query('SELECT * from solar-arrays', (err, rows) => {
       connection.release(); // return the connection to pool
@@ -65,7 +75,6 @@ app.get('/api/solar-arr', (req, res) => {
       } else {
         console.log(err);
       }
-
       // if(err) throw err
       console.log('The data from beer table are: \n', rows);
     });
