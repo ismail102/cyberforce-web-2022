@@ -52,10 +52,8 @@ app.use(bodyParser.json());
 
 var dport = app.get('port');
 app.listen(dport, function () {
-  console.log(
-    info() + ' ' + ' app is running at http://localhost:' + dport + '/'
-  );
-  console.log('   Hit CRTL-C to stop the node server.  ');
+  console.log('App is running at http://localhost:' + dport + '/');
+  console.log('--->Hit CRTL-C to stop the node server.  ');
 });
 
 const pool = mysql.createPool({
