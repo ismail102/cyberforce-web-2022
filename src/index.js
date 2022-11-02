@@ -29,7 +29,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4200;
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -47,8 +47,16 @@ app.use(bodyParser.json());
 
 // MySQL Code goes here
 
-// Listen on enviroment port or 5000
-app.listen(port, () => console.log(`Listening on port ${port}`));
+// // Listen on enviroment port or 5000
+// app.listen(port, () => console.log(`Listening on port ${port}`));
+
+var dport = app.get('port');
+app.listen(dport, function () {
+  console.log(
+    info() + ' ' + ' app is running at http://localhost:' + dport + '/'
+  );
+  console.log('   Hit CRTL-C to stop the node server.  ');
+});
 
 const pool = mysql.createPool({
   connectionLimit: 10,
