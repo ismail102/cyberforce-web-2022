@@ -16,7 +16,12 @@ export class DataGetService {
   // Node/Express API
   REST_API: string = 'http://10.0.108.76:8080/api';
   // Http Header
-  httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+  httpHeaders = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set(
+      'Access-Control-Allow-Origin',
+      'http://10.0.108.76:8080/api/solar-arr'
+    );
 
   // Get Data
   getFiles(): Observable<any> {
