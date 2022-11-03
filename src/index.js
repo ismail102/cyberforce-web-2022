@@ -53,22 +53,22 @@ connection.connect(function (error) {
   }
 });
 
-const app = express();
-const port = process.env.PORT || 3000;
+// const app = express();
+// const port = process.env.PORT || 3000;
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json
-app.use(bodyParser.json());
+// // parse application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended: false }));
+// // parse application/json
+// app.use(bodyParser.json());
 
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header(
+//     'Access-Control-Allow-Headers',
+//     'Origin, X-Requested-With, Content-Type, Accept'
+//   );
+//   next();
+// });
 // // Parsing middleware
 // // Parse application/x-www-form-urlencoded
 // // app.use(bodyParser.urlencoded({ extended: false })); // Remove
@@ -108,32 +108,32 @@ app.use(function (req, res, next) {
 //   });
 // });
 
-app.get('/api/solar-arr', function (req, res) {
-  console.log(info() + ' clientes request.... ');
-  var sql = 'SELECT * FROM solar_arrays';
-  conexao.query(sql, function (err, result, fields) {
-    if (err) {
-      console.log(info() + '<----->' + err);
-      res.send(info() + ': DBErr.....!');
-    } else {
-      console.log(info() + '<----->' + result);
-      res.send(result);
-    }
-  });
-});
+// app.get('/api/solar-arr', function (req, res) {
+//   console.log(info() + ' clientes request.... ');
+//   var sql = 'SELECT * FROM solar_arrays';
+//   conexao.query(sql, function (err, result, fields) {
+//     if (err) {
+//       console.log(info() + '<----->' + err);
+//       res.send(info() + ': DBErr.....!');
+//     } else {
+//       console.log(info() + '<----->' + result);
+//       res.send(result);
+//     }
+//   });
+// });
 
-function info() {
-  now = new Date();
-  return now.getTime();
-}
+// function info() {
+//   now = new Date();
+//   return now.getTime();
+// }
 
 // To stop current listening at port 4200
 // sudo lsof -t -i:8080
 // TO kill port 4200
 // sudo npx kill-port 8080
-app.listen(port, function () {
-  console.log('App is running at http://10.0.108.79:' + port + '/');
-  console.log('--->Hit CRTL-C to stop the node server.  ');
-});
+// app.listen(port, function () {
+//   console.log('App is running at http://10.0.108.79:' + port + '/');
+//   console.log('--->Hit CRTL-C to stop the node server.  ');
+// });
 
 // module.exports = app;
