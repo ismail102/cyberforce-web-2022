@@ -26,7 +26,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mariadb');
+const mysql = require('mysql2');
 const cors = require('cors');
 
 const pool = mysql.createPool({
