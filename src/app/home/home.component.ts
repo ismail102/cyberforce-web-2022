@@ -12,9 +12,14 @@ export class HomeComponent implements OnInit {
   constructor(private dataGetService: DataGetService) {}
 
   ngOnInit(): void {
-    this.dataGetService.getFiles().subscribe((data: any) => {
-      this.solarArr = data;
-      console.log('Data: ', this.solarArr);
-    });
+    this.dataGetService.getSolarArr().subscribe(
+      (data: any) => {
+        this.solarArr = data;
+        // console.log('Data: ', this.solarArr);
+      },
+      (err) => {
+        console.log('!Error: ', err);
+      }
+    );
   }
 }

@@ -26,8 +26,19 @@ export class DataGetService {
   // .set('Access-Control-Allow-Credentials', 'true');
 
   // Get Data
-  getFiles(): Observable<any> {
+  getSolarArr(): Observable<any> {
     let API_URL = `${this.REST_API}/solar-arr`;
+    return this.http.get(API_URL, { headers: this.httpHeaders }).pipe(
+      map((res: any) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  // Get Data
+  getFiles(): Observable<any> {
+    let API_URL = `${this.REST_API}/files`;
     return this.http.get(API_URL, { headers: this.httpHeaders }).pipe(
       map((res: any) => {
         return res || {};

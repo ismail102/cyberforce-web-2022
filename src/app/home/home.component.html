@@ -49,9 +49,27 @@
         <div class="col">
           <div class="card">
             <div class="card-body">
-              <p class="card-text">
+              <!-- <p class="card-text">
                 Power Generation (Power from Data Historian)
-              </p>
+              </p> -->
+              <table>
+                <thead>
+                  <tr>
+                    <td>ID</td>
+                    <td>Array Voltage</td>
+                    <td>Array Current</td>
+                    <td>Power = Voltage x Current</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of solarArr">
+                    <th>{{ data.arrayID }}</th>
+                    <td>{{ data.arrayVoltage }}</td>
+                    <td>@{{ data.arrayCurrent }}</td>
+                    <td>{{ data.arrayVoltage * data.arrayCurrent }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

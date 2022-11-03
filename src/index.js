@@ -119,7 +119,7 @@ app.use(function (req, res, next) {
 
 // Get all beers
 app.get('/api/solar-arr', (req, res) => {
-  console.log('------->Res: ', res);
+  console.log('----->Res: ', res);
   // pool.getConnection((err, connection) => {
   //   console.log('------->Connection: ', connection);
   //   if (err) {
@@ -129,13 +129,12 @@ app.get('/api/solar-arr', (req, res) => {
   //   console.log('connected as id ' + connection.threadId);
   pool.query('SELECT * from solar_arrays', (err, rows) => {
     if (!err) {
-      console.log('------->Result: ', res);
       res.send(rows);
     } else {
-      console.log(err);
+      console.log('----->!Error: ', err);
     }
     // if(err) throw err
-    console.log('The data from beer table are: \n', rows);
+    console.log('----->Data fetch successfully.\n');
   });
 });
 
