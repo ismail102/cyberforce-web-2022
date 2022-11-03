@@ -26,32 +26,36 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
+const { createPool } = require('mysql');
 const cors = require('cors');
 
-// const pool = mysql.createPool({
-//   connectionLimit: 5,
-//   host: '10.0.108.79',
-//   user: 'blue108',
-//   password: 'System-Unwary-Random-Canister9',
-//   database: 'solar',
-// });
-
-const connection = mysql.createConnection({
+const pool = createPool({
+  connectionLimit: 10,
   host: '10.0.108.79',
   user: 'blue108',
   password: 'System-Unwary-Random-Canister9',
   database: 'solar',
 });
 
-connection.connect(function (error) {
-  if (error) {
-    console.log('------->Error: ', error);
-    throw error;
-  } else {
-    console.log('Connected to MySQL! Database name: solar');
-  }
+pool.query(`select * from solar.solar_arrays`, (err, res) => {
+  return console.log('-------->Res: ', res);
 });
+
+// const connection = mysql.createConnection({
+//   host: '10.0.108.79',
+//   user: 'blue108',
+//   password: 'System-Unwary-Random-Canister9',
+//   database: 'solar',
+// });
+
+// connection.connect(function (error) {
+//   if (error) {
+//     console.log('------->Error: ', error);
+//     throw error;
+//   } else {
+//     console.log('Connected to MySQL! Database name: solar');
+//   }
+// });
 
 // const app = express();
 // const port = process.env.PORT || 3000;
