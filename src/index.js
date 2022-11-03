@@ -26,11 +26,11 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
+const mysql = require('mariadb');
 const cors = require('cors');
 
 const pool = mysql.createPool({
-  connectionLimit: 10,
+  connectionLimit: 5,
   host: '10.0.108.76',
   user: 'blue108',
   password: 'System-Unwary-Random-Canister9',
