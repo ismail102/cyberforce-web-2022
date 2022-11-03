@@ -67,9 +67,9 @@ const pool = createPool({
   database: 'solar',
 });
 
-pool.query(`select * from solar.solar_arrays`, (err, res) => {
-  return console.log('-------->Res: ', res);
-});
+// pool.query(`select * from solar.solar_arrays`, (err, res) => {
+//   return console.log('-------->Res: ', res);
+// });
 
 // const connection = mysql.createConnection({
 //   host: '10.0.108.79',
@@ -87,22 +87,22 @@ pool.query(`select * from solar.solar_arrays`, (err, res) => {
 //   }
 // });
 
-// const app = express();
-// const port = process.env.PORT || 3000;
+const app = express();
+const port = process.env.PORT || 3000;
 
-// // parse application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: false }));
-// // parse application/json
-// app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'Origin, X-Requested-With, Content-Type, Accept'
-//   );
-//   next();
-// });
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
 // // Parsing middleware
 // // Parse application/x-www-form-urlencoded
 // // app.use(bodyParser.urlencoded({ extended: false })); // Remove
@@ -119,28 +119,26 @@ pool.query(`select * from solar.solar_arrays`, (err, res) => {
 // var dport = app.get('port');
 
 // Get all beers
-// app.get('/api/solar-arr', (req, res) => {
-//   console.log('------->Res: ', res);
-//   pool.getConnection((err, connection) => {
-//     console.log('------->Connection: ', connection);
-//     if (err) {
-//       console.log('------->Error: ', err);
-//       throw err;
-//     }
-//     console.log('connected as id ' + connection.threadId);
-//     connection.query('SELECT * from solar-arrays', (err, rows) => {
-//       connection.release(); // return the connection to pool
-
-//       if (!err) {
-//         res.send(rows);
-//       } else {
-//         console.log(err);
-//       }
-//       // if(err) throw err
-//       console.log('The data from beer table are: \n', rows);
-//     });
-//   });
-// });
+app.get('/api/solar-arr', (req, res) => {
+  console.log('------->Res: ', res);
+  // pool.getConnection((err, connection) => {
+  //   console.log('------->Connection: ', connection);
+  //   if (err) {
+  //     console.log('------->Error: ', err);
+  //     throw err;
+  //   }
+  //   console.log('connected as id ' + connection.threadId);
+  pool.query('SELECT * from solar-arrays', (err, rows) => {
+    if (!err) {
+      console.log('------->Result: ', res);
+      res.send(rows);
+    } else {
+      console.log(err);
+    }
+    // if(err) throw err
+    console.log('The data from beer table are: \n', rows);
+  });
+});
 
 // app.get('/api/solar-arr', function (req, res) {
 //   console.log(info() + ' clientes request.... ');
@@ -165,7 +163,7 @@ pool.query(`select * from solar.solar_arrays`, (err, res) => {
 // sudo lsof -t -i:8080
 // TO kill port 4200
 // sudo npx kill-port 8080
-// app.listen(port, function () {
-//   console.log('App is running at http://10.0.108.79:' + port + '/');
-//   console.log('--->Hit CRTL-C to stop the node server.  ');
-// });
+app.listen(port, function () {
+  console.log('App is running at http://10.0.108.79:' + port + '/');
+  console.log('--->Hit CRTL-C to stop the node server.  ');
+});
