@@ -14,11 +14,17 @@ export class DataGetService {
   constructor(private http: HttpClient) {}
 
   // Node/Express API
-  REST_API: string = 'http://10.0.108.76:8080/api';
+  REST_API: string = 'http://10.0.108.79:8080/api';
   // Http Header
   httpHeaders = new HttpHeaders()
     .set('Content-Type', 'application/json')
-    .set('Access-Control-Allow-Origin', 'http://10.0.108.79:4200');
+    .set('Access-Control-Allow-Origin', '*')
+    .set(
+      'Access-Control-Allow-Methods',
+      'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+    )
+    .set('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
+    .set('Access-Control-Allow-Credentials', 'true');
 
   // Get Data
   getFiles(): Observable<any> {

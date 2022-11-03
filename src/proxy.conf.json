@@ -1,8 +1,8 @@
 {
   "/api/*": {
-    "target": "http://10.0.108.79:4200",
+    "target": "http://10.0.108.79:8080",
     "secure": true,
-    "changeOrigin": true,
+    "changeOrigin": false,
     "logLevel": "debug"
   }
 }
