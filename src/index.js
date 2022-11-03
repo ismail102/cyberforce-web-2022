@@ -30,11 +30,10 @@ const { createPool } = require('mysql');
 const cors = require('cors');
 
 const pool = createPool({
-  connectionLimit: 10,
   host: '10.0.108.79',
   user: 'blue108',
   password: 'System-Unwary-Random-Canister9',
-  database: 'solar',
+  connectionLimit: 10,
 });
 
 pool.query(`select * from solar.solar_arrays`, (err, res) => {
