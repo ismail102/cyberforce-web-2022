@@ -16,15 +16,14 @@ export class DataGetService {
   // Node/Express API
   REST_API: string = 'http://localhost:8080/api';
   // Http Header
-  httpHeaders = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Access-Control-Allow-Origin', '*')
-    .set(
-      'Access-Control-Allow-Methods',
-      'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-    )
-    .set('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
-    .set('Access-Control-Allow-Credentials', 'true');
+  httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+  // .set('Access-Control-Allow-Origin', '*')
+  // .set(
+  //   'Access-Control-Allow-Methods',
+  //   'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+  // )
+  // .set('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
+  // .set('Access-Control-Allow-Credentials', 'true');
 
   // Get Data
   getFiles(): Observable<any> {

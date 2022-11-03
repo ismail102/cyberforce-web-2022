@@ -27,6 +27,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -37,31 +38,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-// Add headers
-app.use(function (req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
+app.use(
+  cors({
+    origin: true, // "true" will copy the domain of the request back
+    // to the reply. If you need more control than this
+    // use a function.
 
-  // Request methods you wish to allow
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-  );
+    credentials: true, // This MUST be "true" if your endpoint is
+    // authenticated via either a session cookie
+    // or Authorization header. Otherwise the
+    // browser will block the response.
 
-  // Request headers you wish to allow
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type'
-  );
-
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
-
-  // Pass to next layer of middleware
-  next();
-});
-
+    methods: 'POST,GET,PUT,OPTIONS,DELETE', // Make sure you're not blocking
+    // pre-flight OPTIONS requests
+  })
+);
 // // Parsing middleware
 // // Parse application/x-www-form-urlencoded
 // // app.use(bodyParser.urlencoded({ extended: false })); // Remove
@@ -109,9 +100,9 @@ app.get('/api/solar-arr', (req, res) => {
 });
 
 // To stop current listening at port 4200
-// sudo lsof -t -i:4200
+// sudo lsof -t -i:8080
 // TO kill port 4200
-// sudo npx kill-port 4200
+// sudo npx kill-port 8080
 app.listen(port, function () {
   console.log('App is running at http://localhost:' + port + '/');
   console.log('--->Hit CRTL-C to stop the node server.  ');
