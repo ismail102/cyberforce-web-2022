@@ -62,7 +62,7 @@ const mysql = require('mysql');
 const pool = createPool({
   host: '10.0.108.76',
   user: 'blue108',
-  password: 'System-Unwary-Random-Canister9',
+  password: '',
   connectionLimit: 10,
   database: 'solar',
 });
