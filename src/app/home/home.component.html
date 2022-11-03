@@ -17,9 +17,33 @@
           <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
-                <p class="card-text">
+                <!-- <p class="card-text">
                   List of Solar Arrays (Pulled from Data Historian)
-                </p>
+                </p> -->
+                <table *ngFor="let data of solarArr" class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Solar Status</th>
+                      <th scope="col">Array Voltage</th>
+                      <th scope="col">Array Current</th>
+                      <th scope="col">Array Temp</th>
+                      <th scope="col">Tracker Tilt</th>
+                      <th scope="col">Tracker Azimuth</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">{{ data.arrayID }}</th>
+                      <td>{{ data.solarStatus }}</td>
+                      <td>{{ data.arrayVoltage }}</td>
+                      <td>@{{ data.arrayCurrent }}</td>
+                      <td>{{ data.arrayTemp }}</td>
+                      <td>@{{ data.trackerTilt }}</td>
+                      <td>@{{ data.trackerAzimuth }}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
