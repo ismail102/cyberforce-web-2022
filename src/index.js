@@ -87,7 +87,6 @@ const pool = createPool({
 //   }
 // });
 
-const app = express();
 const port = process.env.PORT || 3000;
 
 // parse application/x-www-form-urlencoded
