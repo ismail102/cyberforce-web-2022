@@ -56,15 +56,6 @@ connection.connect(function (error) {
 const app = express();
 const port = process.env.PORT || 3000;
 
-// To stop current listening at port 4200
-// sudo lsof -t -i:8080
-// TO kill port 4200
-// sudo npx kill-port 8080
-app.listen(port, function () {
-  console.log('App is running at http://10.0.108.79:' + port + '/');
-  console.log('--->Hit CRTL-C to stop the node server.  ');
-});
-
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
@@ -135,5 +126,14 @@ function info() {
   now = new Date();
   return now.getTime();
 }
+
+// To stop current listening at port 4200
+// sudo lsof -t -i:8080
+// TO kill port 4200
+// sudo npx kill-port 8080
+app.listen(port, function () {
+  console.log('App is running at http://10.0.108.79:' + port + '/');
+  console.log('--->Hit CRTL-C to stop the node server.  ');
+});
 
 module.exports = app;
