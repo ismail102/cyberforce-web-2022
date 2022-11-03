@@ -26,13 +26,12 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const cors = require('cors');
 
 const pool = mysql.createPool({
   connectionLimit: 5,
   host: '10.0.108.79',
-  port: 3306,
   user: 'blue108',
   password: 'System-Unwary-Random-Canister9',
   database: 'solar',
@@ -71,10 +70,11 @@ app.use(function (req, res, next) {
 
 // Get all beers
 app.get('/api/solar-arr', (req, res) => {
-  console.log('Res: ', res);
+  console.log('------->Res: ', res);
   pool.getConnection((err, connection) => {
+    console.log('------->Connection: ', connection);
     if (err) {
-      console.log('!Error: ', err);
+      console.log('------->Error: ', err);
       throw err;
     }
     console.log('connected as id ' + connection.threadId);
