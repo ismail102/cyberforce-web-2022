@@ -29,16 +29,41 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const cors = require('cors');
 
-const pool = mysql.createPool({
-  connectionLimit: 5,
+// const pool = mysql.createPool({
+//   connectionLimit: 5,
+//   host: '10.0.108.79',
+//   user: 'blue108',
+//   password: 'System-Unwary-Random-Canister9',
+//   database: 'solar',
+// });
+
+const connection = mysql.createConnection({
   host: '10.0.108.79',
   user: 'blue108',
   password: 'System-Unwary-Random-Canister9',
   database: 'solar',
 });
 
+connection.connect(function (error) {
+  if (error) {
+    console.log('------->Error: ', error);
+    throw error;
+  } else {
+    console.log('Connected to MySQL! Database name: solar');
+  }
+});
+
 const app = express();
 const port = process.env.PORT || 3000;
+
+// To stop current listening at port 4200
+// sudo lsof -t -i:8080
+// TO kill port 4200
+// sudo npx kill-port 8080
+app.listen(port, function () {
+  console.log('App is running at http://10.0.108.79:' + port + '/');
+  console.log('--->Hit CRTL-C to stop the node server.  ');
+});
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -69,36 +94,46 @@ app.use(function (req, res, next) {
 // var dport = app.get('port');
 
 // Get all beers
-app.get('/api/solar-arr', (req, res) => {
-  console.log('------->Res: ', res);
-  pool.getConnection((err, connection) => {
-    console.log('------->Connection: ', connection);
-    if (err) {
-      console.log('------->Error: ', err);
-      throw err;
-    }
-    console.log('connected as id ' + connection.threadId);
-    connection.query('SELECT * from solar-arrays', (err, rows) => {
-      connection.release(); // return the connection to pool
+// app.get('/api/solar-arr', (req, res) => {
+//   console.log('------->Res: ', res);
+//   pool.getConnection((err, connection) => {
+//     console.log('------->Connection: ', connection);
+//     if (err) {
+//       console.log('------->Error: ', err);
+//       throw err;
+//     }
+//     console.log('connected as id ' + connection.threadId);
+//     connection.query('SELECT * from solar-arrays', (err, rows) => {
+//       connection.release(); // return the connection to pool
 
-      if (!err) {
-        res.send(rows);
-      } else {
-        console.log(err);
-      }
-      // if(err) throw err
-      console.log('The data from beer table are: \n', rows);
-    });
+//       if (!err) {
+//         res.send(rows);
+//       } else {
+//         console.log(err);
+//       }
+//       // if(err) throw err
+//       console.log('The data from beer table are: \n', rows);
+//     });
+//   });
+// });
+
+app.get('/api/solar-arr', function (req, res) {
+  console.log(info() + ' clientes request.... ');
+  var sql = 'SELECT * FROM solar_arrays';
+  conexao.query(sql, function (err, result, fields) {
+    if (err) {
+      console.log(info() + '<----->' + err);
+      res.send(info() + ': DBErr.....!');
+    } else {
+      console.log(info() + '<----->' + result);
+      res.send(result);
+    }
   });
 });
 
-// To stop current listening at port 4200
-// sudo lsof -t -i:8080
-// TO kill port 4200
-// sudo npx kill-port 8080
-app.listen(port, function () {
-  console.log('App is running at http://10.0.108.79:' + port + '/');
-  console.log('--->Hit CRTL-C to stop the node server.  ');
-});
+function info() {
+  now = new Date();
+  return now.getTime();
+}
 
 module.exports = app;
