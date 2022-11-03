@@ -127,7 +127,7 @@ app.get('/api/solar-arr', (req, res) => {
   //     throw err;
   //   }
   //   console.log('connected as id ' + connection.threadId);
-  pool.query('SELECT * from solar-arrays', (err, rows) => {
+  pool.query('SELECT * from solar_arrays', (err, rows) => {
     if (!err) {
       console.log('------->Result: ', res);
       res.send(rows);
