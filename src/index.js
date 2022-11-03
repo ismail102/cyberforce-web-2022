@@ -60,7 +60,7 @@ const app = express();
 const mysql = require('mysql');
 
 const pool = createPool({
-  host: 'localhost',
+  host: '10.0.108.76',
   user: 'blue108',
   password: 'System-Unwary-Random-Canister9',
   connectionLimit: 10,
