@@ -38,7 +38,7 @@ const cors = require('cors');
 // });
 
 const connection = mysql.createConnection({
-  host: 'localhost',
+  host: '10.0.108.79',
   user: 'blue108',
   password: 'System-Unwary-Random-Canister9',
   database: 'solar',
