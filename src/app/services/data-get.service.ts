@@ -14,7 +14,7 @@ export class DataGetService {
   constructor(private http: HttpClient) {}
 
   // Node/Express API
-  REST_API: string = 'http://localhost:8080/api';
+  REST_API: string = '/api';
   // Http Header
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
   // .set('Access-Control-Allow-Origin', '*')

@@ -29,30 +29,30 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const cors = require('cors');
 
+const pool = mysql.createPool({
+  connectionLimit: 10,
+  host: '10.0.108.76',
+  user: 'blue108',
+  password: 'System-Unwary-Random-Canister9',
+  database: 'solar',
+});
+
 const app = express();
 const port = process.env.PORT || 8080;
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-
 // parse application/json
 app.use(bodyParser.json());
 
-app.use(
-  cors({
-    origin: true, // "true" will copy the domain of the request back
-    // to the reply. If you need more control than this
-    // use a function.
-
-    credentials: true, // This MUST be "true" if your endpoint is
-    // authenticated via either a session cookie
-    // or Authorization header. Otherwise the
-    // browser will block the response.
-
-    methods: 'POST,GET,PUT,OPTIONS,DELETE', // Make sure you're not blocking
-    // pre-flight OPTIONS requests
-  })
-);
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
 // // Parsing middleware
 // // Parse application/x-www-form-urlencoded
 // // app.use(bodyParser.urlencoded({ extended: false })); // Remove
@@ -67,14 +67,6 @@ app.use(
 // app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // var dport = app.get('port');
-
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: '10.0.108.76',
-  user: 'blue108',
-  password: 'System-Unwary-Random-Canister9',
-  database: 'solar',
-});
 
 // Get all beers
 app.get('/api/solar-arr', (req, res) => {
@@ -107,3 +99,5 @@ app.listen(port, function () {
   console.log('App is running at http://localhost:' + port + '/');
   console.log('--->Hit CRTL-C to stop the node server.  ');
 });
+
+module.exports = app;
