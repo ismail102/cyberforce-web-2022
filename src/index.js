@@ -95,9 +95,9 @@ app.get('/api/solar-arr', (req, res) => {
 // sudo lsof -t -i:8080
 // TO kill port 4200
 // sudo npx kill-port 8080
-app.listen(port, function () {
-  console.log('App is running at http://localhost:' + port + '/');
-  console.log('--->Hit CRTL-C to stop the node server.  ');
-});
+// app.listen(port, function () {
+//   console.log('App is running at http://localhost:' + port + '/');
+//   console.log('--->Hit CRTL-C to stop the node server.  ');
+// });
 
 module.exports = app;
