@@ -1,60 +1,58 @@
 <div class="container">
-  <div class="container">
-    <div class="card">
-      <div class="card-body">
-        <img class="img-1" src="assets/solar-pannel.jpg" />
-      </div>
+  <div class="card">
+    <div class="card-body">
+      <img class="img-1" src="assets/solar-pannel.jpg" />
     </div>
   </div>
+</div>
 
-  <div class="container">
-    <div class="card">
-      <div class="card-body">
-        <div class="card" style="margin-bottom: 40px;">
-          <div class="card-body">Sonnenberg Fields</div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body">
-                <!-- <p class="card-text">
+<div class="container">
+  <div class="card section-2">
+    <div class="card-body">
+      <div class="card" style="margin-bottom: 40px;">
+        <div class="card-body">Sonnenberg Fields</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <!-- <p class="card-text">
                   List of Solar Arrays (Pulled from Data Historian)
                 </p> -->
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">ID</th>
-                      <th scope="col">Solar Status</th>
-                      <th scope="col">Array Voltage</th>
-                      <th scope="col">Array Current</th>
-                      <th scope="col">Array Temp</th>
-                      <th scope="col">Tracker Tilt</th>
-                      <th scope="col">Tracker Azimuth</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let data of solarArr">
-                      <th scope="row">{{ data.arrayID }}</th>
-                      <td>{{ data.solarStatus }}</td>
-                      <td>{{ data.arrayVoltage }}</td>
-                      <td>@{{ data.arrayCurrent }}</td>
-                      <td>{{ data.arrayTemp }}</td>
-                      <td>@{{ data.trackerTilt }}</td>
-                      <td>@{{ data.trackerAzimuth }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <td>ID</td>
+                    <td>Solar Status</td>
+                    <td>Array Voltage</td>
+                    <td>Array Current</td>
+                    <td>Array Temp</td>
+                    <td>Tracker Tilt</td>
+                    <td>Tracker Azimuth</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of solarArr">
+                    <th>{{ data.arrayID }}</th>
+                    <td>{{ data.solarStatus }}</td>
+                    <td>{{ data.arrayVoltage }}</td>
+                    <td>@{{ data.arrayCurrent }}</td>
+                    <td>{{ data.arrayTemp }}</td>
+                    <td>@{{ data.trackerTilt }}</td>
+                    <td>@{{ data.trackerAzimuth }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-          <div class="col-sm-6">
-            <!-- <div class="card">
-              <div class="card-body">
-                <p class="card-text">
-                  Power Generation (Power from Data Historian)
-                </p>
-              </div>
-            </div> -->
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">
+                Power Generation (Power from Data Historian)
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -5,9 +5,14 @@
 
 .img-1 {
   width: 100%;
-  height: 100%;
+  height: 300px;
 }
 
-.container {
+.section-1 {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.section-2 {
   margin-top: 30px;
 }
