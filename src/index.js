@@ -55,7 +55,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
-const upload = multer({ dest: './uploads/' });
+// const upload = multer({ dest: './uploads/' });
 
 const { createPool } = require('mysql');
 const cors = require('cors');
@@ -109,7 +109,18 @@ app.get('/api/solar-arr', (req, res) => {
   });
 });
 
-// Get all beers
+var storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './uploads/');
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.originalname);
+  },
+});
+
+var upload = multer({ storage: storage });
+
+// Post Api
 app.post('/api/contact-info', upload.single('file'), (req, res) => {
   console.log('File: ', req.file);
   console.log('Info: ', req.body.info);
