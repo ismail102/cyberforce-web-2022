@@ -41,13 +41,13 @@ export class DataGetService {
   }
 
   // Post Data
-  submitContact(name: String, email: String, phone: String, file: String) {
+  submitContact(name: String, email: String, phone: String, file: File, fileName: String) {
     let API_URL = `${this.REST_API}/contact-info`;
     let obj = Object.assign({});
     obj.name = name;
     obj.email = email;
     obj.phone = phone;
-    obj.filePath = file;
+    obj.fileName = fileName;
     return this.http.post(API_URL, obj, { headers: this.httpHeaders }).pipe(
       map((res: any) => {
         return res || {};

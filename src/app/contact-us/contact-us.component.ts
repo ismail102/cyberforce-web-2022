@@ -22,18 +22,22 @@ export class ContactUsComponent implements OnInit {
       nameInput: [''],
       emailInput: [''],
       phoneInput: [''],
-      fileUpload: ['/filepath'],
+      fileUpload: [''],
     });
   }
+  file: File;
+  fileUpload(event: any) {
+    const files: FileList = event.target.files;
+    this.file = files[0];
+  }
 
-  loginContactInfo() {
+  submitContactInfo() {
     let name = this.contactForm.controls['nameInput'].value;
     let email = this.contactForm.controls['emailInput'].value;
     let phone = this.contactForm.controls['phoneInput'].value;
-    let file = this.contactForm.controls['fileUpload'].value;
-
+    let fileName = this.file.name;
     this.dataGetService
-      .submitContact(name, email, phone, file)
+      .submitContact(name, email, phone, this.file, fileName)
       .subscribe((data: any) => {
         console.log('Contact Submission Response: ', data);
       });

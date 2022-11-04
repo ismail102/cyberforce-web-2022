@@ -20,7 +20,7 @@
           <div class="card">
             <div class="card-body">
               <p class="card-text">Contact Us Form</p>
-              <form [formGroup]="contactForm" (ngSubmit)="loginContactInfo()">
+              <form [formGroup]="contactForm" (ngSubmit)="submitContactInfo()">
                 <div class="mb-3">
                   <label for="nameInput" class="form-label">Name</label>
                   <input
@@ -54,7 +54,12 @@
                   <label for="fileUpload" class="form-label"
                     >File Upload (to FTP Server on Task Server)</label
                   >
-                  <input class="form-control" type="file" id="fileUpload" />
+                  <input
+                    class="form-control"
+                    type="file"
+                    id="fileUpload"
+                    (change)="fileUpload($event)"
+                  />
                 </div>
                 <button type="submit" class="btn btn-primary mb-3">
                   Submit
