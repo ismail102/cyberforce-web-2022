@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     this.dataGetService.downloadFile(fileName).subscribe(
       (data) => {
         saveAs(data, fileName);
-        alert('File downloaded.');
+        alert(fileName + ' is generated for download.');
       },
       (err) => {
         alert('Problem while downloading the file.');
