@@ -57,12 +57,21 @@ const bodyParser = require('body-parser');
 const { createPool } = require('mysql');
 const cors = require('cors');
 const app = express();
-const mysql = require('mysql');
+const mysql1 = require('mysql');
+const mysql2 = require('mysql');
 
-const pool = mysql.createPool({
+const pool1 = mysql1.createPool({
   host: '10.0.108.76',
   user: 'blue108',
   password: '',
+  connectionLimit: 10,
+  database: 'solar',
+});
+
+const pool2 = mysql1.createPool({
+  host: 'localhost',
+  user: 'blue108',
+  password: 'System-Unwary-Random-Canister9',
   connectionLimit: 10,
   database: 'solar',
 });
@@ -86,15 +95,25 @@ app.use(function (req, res, next) {
 // Get all beers
 app.get('/api/solar-arr', (req, res) => {
   console.log('----->Res: ', res);
-  pool.query('SELECT * from solar_arrays', (err, rows) => {
+  pool1.query('SELECT * from solar_arrays', (err, rows) => {
     if (!err) {
       res.send(rows);
     } else {
       console.log('----->!Error: ', err);
     }
     // if(err) throw err
-    console.log('----->Data fetch successfully.\n');
+    console.log('----->Data fetch successfully from - 76.\n');
   });
+});
+
+pool2.query('SELECT arrayVoltage from solar_arrays', (err, rows) => {
+  if (!err) {
+    res.send(rows);
+  } else {
+    console.log('----->!Error: ', err);
+  }
+  // if(err) throw err
+  console.log('----->Data fetch successfully from - 79.\n');
 });
 
 app.listen(port, function () {
