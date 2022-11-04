@@ -17,13 +17,6 @@ export class DataGetService {
   REST_API: string = 'http://10.0.108.79:3000/api';
   // Http Header
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-  // .set('Access-Control-Allow-Origin', '*')
-  // .set(
-  //   'Access-Control-Allow-Methods',
-  //   'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-  // )
-  // .set('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
-  // .set('Access-Control-Allow-Credentials', 'true');
 
   // Get Data
   getSolarArr(): Observable<any> {
@@ -47,14 +40,21 @@ export class DataGetService {
     );
   }
 
-  // getFiles(): Observable<any> {
-  //   const url = '/api/solar';
-  //   return this.http.get<any>(url).pipe(catchError(this.handleError));
-  //   // return of([
-  //   //   { name: 'ismail', isAvailable: true },
-  //   //   { name: 'sai', isAvailable: true },
-  //   // ]);
-  // }
+  // Post Data
+  submitContact(name: String, email: String, phone: String, file: String) {
+    let API_URL = `${this.REST_API}/contact-info`;
+    let obj = Object.assign({});
+    obj.name = name;
+    obj.email = email;
+    obj.phone = phone;
+    obj.filePath = file;
+    return this.http.post(API_URL, obj, { headers: this.httpHeaders }).pipe(
+      map((res: any) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

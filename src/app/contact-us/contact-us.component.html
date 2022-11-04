@@ -20,31 +20,29 @@
           <div class="card">
             <div class="card-body">
               <p class="card-text">Contact Us Form</p>
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Name</label
-                >
-                <input type="text" class="form-control" id="nameInput" />
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Email</label
-                >
-                <input type="email" class="form-control" id="emailInput" />
-              </div>
-              <div class="mb-3">
-                <label for="phoneNumberInput" class="form-label"
-                  >Phone Number</label
-                >
-                <input type="text" class="form-control" id="phoneNumberInput" />
-              </div>
-              <div class="mb-3">
-                <label for="formFile" class="form-label"
-                  >File Upload (to FTP Server on Task Server)</label
-                >
-                <input class="form-control" type="file" id="formFile" />
-              </div>
-              <button type="submit" class="btn btn-primary mb-3">Submit</button>
+              <form [formGroup]="contactForm" (ngSubmit)="loginContactInfo()">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" />
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" />
+                </div>
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" id="phone" />
+                </div>
+                <div class="mb-3">
+                  <label for="file" class="form-label"
+                    >File Upload (to FTP Server on Task Server)</label
+                  >
+                  <input class="form-control" type="file" id="file" />
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">
+                  Submit
+                </button>
+              </form>
             </div>
           </div>
         </div>

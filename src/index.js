@@ -106,14 +106,19 @@ app.get('/api/solar-arr', (req, res) => {
   });
 });
 
-pool2.query('SELECT arrayVoltage from solar_arrays', (err, rows) => {
-  if (!err) {
-    console.log('----->Rows: ', rows);
-    console.log('----->Data fetch successfully from - 79.\n');
-  } else {
-    console.log('----->!Error: ', err);
-  }
-  // if(err) throw err
+// Get all beers
+app.get('/api/contact-info', (req, res) => {
+  console.log('----->Res: ', req);
+  pool2.query('SELECT arrayVoltage from solar_arrays', (err, rows) => {
+    if (!err) {
+      console.log('----->Rows: ', rows);
+      console.log('----->Data fetch successfully from - 79.\n');
+      res.send('Contact info submitted successfully.');
+    } else {
+      console.log('----->!Error: ', err);
+    }
+    // if(err) throw err
+  });
 });
 
 app.listen(port, function () {
