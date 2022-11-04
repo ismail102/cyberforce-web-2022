@@ -82,7 +82,7 @@ const pool2 = mysql1.createPool({
 const port = process.env.PORT || 3000;
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
