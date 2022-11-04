@@ -108,9 +108,9 @@ app.get('/api/solar-arr', (req, res) => {
 
 pool2.query('SELECT arrayVoltage from solar_arrays', (err, rows) => {
   if (!err) {
-    res.send(rows);
+    return console.log('----->Rows: ', rows);
   } else {
-    console.log('----->!Error: ', err);
+    return console.log('----->!Error: ', err);
   }
   // if(err) throw err
   console.log('----->Data fetch successfully from - 79.\n');
