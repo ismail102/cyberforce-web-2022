@@ -18,6 +18,17 @@ export class DataGetService {
   // Http Header
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
+  // User Login
+  authentication(): Observable<any> {
+    let API_URL = `${this.REST_API}/solar-arr`;
+    return this.http.post(API_URL, { headers: this.httpHeaders }).pipe(
+      map((res: any) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   // Get Data
   getSolarArr(): Observable<any> {
     let API_URL = `${this.REST_API}/solar-arr`;
@@ -54,7 +65,7 @@ export class DataGetService {
     );
   }
 
-  // Get Data
+  // Get Files Data
   getFiles(): Observable<any> {
     let API_URL = `${this.REST_API}/files`;
     return this.http.get(API_URL, { headers: this.httpHeaders }).pipe(

@@ -47,7 +47,8 @@ export class ContactUsComponent implements OnInit {
       .submitContact(name, email, phone, this.files[0], fileName)
       .subscribe(
         (data: any) => {
-          alert(data);
+          console.log('Data: ', data);
+          alert('Thank you!');
           this.createForm();
         },
         (err: any) => {
