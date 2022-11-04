@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { DataGetService } from '../services/data-get.service';
 import { SharedService } from '../services/shared.service';
 import { saveAs } from 'file-saver';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -35,14 +36,14 @@ export class LoginComponent implements OnInit {
     let password = this.loginForm.controls['passwordInput'].value;
 
     this.dataGetService.authentication(userName, password).subscribe(
-      (data: any)=>{
+      (data: any) => {
         alert('Logged in successfully.');
       },
       (err) => {
         alert('Failed to log in.');
         console.error(err);
       }
-    });
+    );
 
     this.defaultText = userName;
     this.sharedService.setLastValueInHeader(this.defaultText);
