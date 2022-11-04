@@ -57,14 +57,12 @@ export class DataGetService {
     let formParams = new FormData();
     formParams.append('info', JSON.stringify(obj));
     formParams.append('file', file);
-    return this.http
-      .post(API_URL, formParams, { headers: this.httpHeaders })
-      .pipe(
-        map((res: any) => {
-          return res || {};
-        }),
-        catchError(this.handleError)
-      );
+    return this.http.post(API_URL, formParams).pipe(
+      map((res: any) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
