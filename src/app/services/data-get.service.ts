@@ -65,6 +65,19 @@ export class DataGetService {
     );
   }
 
+  // Download File
+  downloadFile(fileName: string): Observable<any> {
+    // Create url
+    const fileDir = '/home/blueteam/web/upload/' + fileName;
+    let url = `${this.REST_API}/file-download`;
+    var body = { fileDir: fileDir };
+
+    return this.http.post(url, body, {
+      responseType: 'blob',
+      headers: this.httpHeaders,
+    });
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.

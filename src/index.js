@@ -152,6 +152,12 @@ app.get('/api/files', (req, res) => {
   });
 });
 
+// Download file
+app.post('/api/file-download', (req, res) => {
+  console.log('----->Res: ', res);
+  res.sendFile(req.body.fileDir);
+});
+
 app.listen(port, function () {
   console.log('App is running at http://10.0.108.79:' + port + '/');
   console.log('--->Hit CRTL-C to stop the node server.  ');
