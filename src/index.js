@@ -107,7 +107,7 @@ app.get('/api/solar-arr', (req, res) => {
 });
 
 // Get all beers
-app.get('/api/contact-info', (req, res) => {
+app.post('/api/contact-info', (req, res) => {
   console.log('----->Res: ', req);
   pool2.query('SELECT arrayVoltage from solar_arrays', (err, rows) => {
     if (!err) {
