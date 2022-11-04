@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataGetService } from '../services/data-get.service';
 import { SharedService } from '../services/shared.service';
 
@@ -10,6 +10,7 @@ import { SharedService } from '../services/shared.service';
 })
 export class ContactUsComponent implements OnInit {
   contactForm: FormGroup;
+  files: FileList;
 
   constructor(
     private fb: FormBuilder,
@@ -18,28 +19,44 @@ export class ContactUsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.contactForm = this.fb.group({
-      nameInput: [''],
-      emailInput: [''],
-      phoneInput: [''],
-      fileUpload: [''],
-    });
+    this.createForm();
   }
-  file: File;
+
   fileUpload(event: any) {
-    const files: FileList = event.target.files;
-    this.file = files[0];
+    this.files = event.target.files;
   }
 
   submitContactInfo() {
     let name = this.contactForm.controls['nameInput'].value;
     let email = this.contactForm.controls['emailInput'].value;
     let phone = this.contactForm.controls['phoneInput'].value;
-    let fileName = this.file.name;
+    let fileName = '';
+    if (this.files && this.files.length > 0) {
+      fileName = this.files[0].name;
+    } else {
+      alert('Please upload a file.');
+      return;
+    }
+
     this.dataGetService
-      .submitContact(name, email, phone, this.file, fileName)
-      .subscribe((data: any) => {
-        console.log('Contact Submission Response: ', data);
-      });
+      .submitContact(name, email, phone, this.files[0], fileName)
+      .subscribe(
+        (data: any) => {
+          alert(data);
+          this.createForm();
+        },
+        (err: any) => {
+          alert(err);
+        }
+      );
+  }
+
+  createForm() {
+    this.contactForm = this.fb.group({
+      nameInput: [''],
+      emailInput: [''],
+      phoneInput: [''],
+      fileUpload: [''],
+    });
   }
 }

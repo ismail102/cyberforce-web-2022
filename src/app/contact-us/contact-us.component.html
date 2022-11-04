@@ -28,7 +28,22 @@
                     class="form-control"
                     id="nameInput"
                     formControlName="nameInput"
+                    required
                   />
+                  <div
+                    *ngIf="
+                      contactForm.controls['nameInput'].invalid &&
+                      (contactForm.controls['nameInput'].dirty ||
+                        contactForm.controls['nameInput'].touched)
+                    "
+                    class="alert"
+                  >
+                    <div
+                      *ngIf="contactForm.controls['nameInput'].errors?.['required']"
+                    >
+                      Name is required.
+                    </div>
+                  </div>
                 </div>
                 <div class="mb-3">
                   <label for="emailInput" class="form-label">Email</label>
@@ -37,7 +52,22 @@
                     class="form-control"
                     id="emailInput"
                     formControlName="emailInput"
+                    required
                   />
+                  <div
+                    *ngIf="
+                      contactForm.controls['emailInput'].invalid &&
+                      (contactForm.controls['emailInput'].dirty ||
+                        contactForm.controls['emailInput'].touched)
+                    "
+                    class="alert"
+                  >
+                    <div
+                      *ngIf="contactForm.controls['emailInput'].errors?.['required']"
+                    >
+                      Email is required.
+                    </div>
+                  </div>
                 </div>
                 <div class="mb-3">
                   <label for="phoneInput" class="form-label"
@@ -48,7 +78,22 @@
                     class="form-control"
                     id="phoneInput"
                     formControlName="phoneInput"
+                    required
                   />
+                  <div
+                    *ngIf="
+                      contactForm.controls['phoneInput'].invalid &&
+                      (contactForm.controls['phoneInput'].dirty ||
+                        contactForm.controls['phoneInput'].touched)
+                    "
+                    class="alert"
+                  >
+                    <div
+                      *ngIf="contactForm.controls['phoneInput'].errors?.['required']"
+                    >
+                      Phone is required.
+                    </div>
+                  </div>
                 </div>
                 <div class="mb-3">
                   <label for="fileUpload" class="form-label"
@@ -59,6 +104,7 @@
                     type="file"
                     id="fileUpload"
                     (change)="fileUpload($event)"
+                    required
                   />
                 </div>
                 <button type="submit" class="btn btn-primary mb-3">
