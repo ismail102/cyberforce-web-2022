@@ -19,18 +19,18 @@ export class ContactUsComponent implements OnInit {
 
   ngOnInit(): void {
     this.contactForm = this.fb.group({
-      name: [''],
-      email: [''],
-      phone: [''],
-      file: ['/filepath'],
+      nameInput: [''],
+      emailInput: [''],
+      phoneInput: [''],
+      fileUpload: ['/filepath'],
     });
   }
 
   loginContactInfo() {
-    let name = this.contactForm.controls['name'].value;
-    let email = this.contactForm.controls['email'].value;
-    let phone = this.contactForm.controls['phone'].value;
-    let file = this.contactForm.controls['file'].value;
+    let name = this.contactForm.controls['nameInput'].value;
+    let email = this.contactForm.controls['emailInput'].value;
+    let phone = this.contactForm.controls['phoneInput'].value;
+    let file = this.contactForm.controls['fileUpload'].value;
 
     this.dataGetService
       .submitContact(name, email, phone, file)
