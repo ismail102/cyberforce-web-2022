@@ -29,17 +29,6 @@ export class DataGetService {
     );
   }
 
-  // Get Data
-  getFiles(): Observable<any> {
-    let API_URL = `${this.REST_API}/files`;
-    return this.http.get(API_URL, { headers: this.httpHeaders }).pipe(
-      map((res: any) => {
-        return res || {};
-      }),
-      catchError(this.handleError)
-    );
-  }
-
   // Post Data
   submitContact(
     name: String,
@@ -58,6 +47,17 @@ export class DataGetService {
     formParams.append('info', JSON.stringify(obj));
     formParams.append('file', file);
     return this.http.post(API_URL, formParams).pipe(
+      map((res: any) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  // Get Data
+  getFiles(): Observable<any> {
+    let API_URL = `${this.REST_API}/files`;
+    return this.http.get(API_URL, { headers: this.httpHeaders }).pipe(
       map((res: any) => {
         return res || {};
       }),

@@ -100,7 +100,7 @@ app.get('/api/solar-arr', (req, res) => {
   console.log('----->Res: ', res);
   pool1.query('SELECT * from solar_arrays', (err, rows) => {
     if (!err) {
-      console.log('----->Data fetch successfully from 76.\n');
+      console.log('----->Solar arrays fetched successfully from 76.\n');
       res.send(rows);
     } else {
       console.log('----->!Error: ', err);
@@ -119,7 +119,6 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({ storage: storage });
-
 // Post Api
 app.post('/api/contact-info', upload.single('file'), (req, res) => {
   console.log('File: ', req.file);
@@ -127,9 +126,6 @@ app.post('/api/contact-info', upload.single('file'), (req, res) => {
   let query =
     'INSERT INTO contact_info (name, email, phone, filePath) VALUES ?';
   let values = [Object.values(JSON.parse(req.body.info))];
-  dir = values[0][values[0].length - 1];
-  dir = '/home/blueteam/web/upload/' + dir;
-  values[0][values[0].length - 1] = dir;
   // let values = [['a', 'b', 'c', 'd']];
   console.log('----->Values: ', values);
   pool2.query(query, [values], (err, rows) => {
@@ -137,6 +133,19 @@ app.post('/api/contact-info', upload.single('file'), (req, res) => {
       msg = 'Contact info submitted successfully into 79.';
       console.log(msg);
       res.send(msg);
+    } else {
+      console.log('----->!Error: ', err);
+    }
+  });
+});
+
+// Get all Files
+app.get('/api/files', (req, res) => {
+  console.log('----->Res: ', res);
+  pool2.query('SELECT * from contact_info', (err, rows) => {
+    if (!err) {
+      console.log('----->Contact info fetched successfully from 79.\n');
+      res.send(rows);
     } else {
       console.log('----->!Error: ', err);
     }
