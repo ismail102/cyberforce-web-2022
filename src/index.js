@@ -111,7 +111,7 @@ app.get('/api/solar-arr', (req, res) => {
 
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, './uploads/');
+    callback(null, '/home/blueteam/web/upload/');
   },
   filename: function (req, file, callback) {
     callback(null, file.originalname);
