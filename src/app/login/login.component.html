@@ -47,9 +47,8 @@
             <div class="d-flex justify-content-between">
               <div class="overflow-hidden">{{ file.filePath }}</div>
               <div>
-                <a
+                <a (click)="downloadFile(file.filePath)"
                   ><img
-                    *ngIf="file.isAvailable === true"
                     src="assets/cloud-computing.png"
                     style="width: 24px; height: 24px;"
                 /></a>

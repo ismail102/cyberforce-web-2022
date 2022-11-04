@@ -69,13 +69,20 @@ export class DataGetService {
   downloadFile(fileName: string): Observable<any> {
     // Create url
     const fileDir = '/home/blueteam/web/upload/' + fileName;
-    let url = `${this.REST_API}/file-download`;
+    let API_URL = `${this.REST_API}/file-download`;
     var body = { fileDir: fileDir };
 
-    return this.http.post(url, body, {
-      responseType: 'blob',
-      headers: this.httpHeaders,
-    });
+    return this.http
+      .post(API_URL, body, {
+        responseType: 'blob',
+        headers: this.httpHeaders,
+      })
+      .pipe(
+        map((res: any) => {
+          return res || {};
+        }),
+        catchError(this.handleError)
+      );
   }
 
   private handleError(error: HttpErrorResponse) {
