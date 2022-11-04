@@ -58,9 +58,7 @@ export class DataGetService {
     formParams.append('info', JSON.stringify(obj));
     formParams.append('file', file);
     return this.http
-      .post(API_URL, formParams, { headers: {
-        "Content-Type": "multipart/form-data"
-      } })
+      .post(API_URL, formParams, { headers: this.httpHeaders })
       .pipe(
         map((res: any) => {
           return res || {};
