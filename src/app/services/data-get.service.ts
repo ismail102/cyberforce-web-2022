@@ -19,9 +19,12 @@ export class DataGetService {
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
   // User Login
-  authentication(): Observable<any> {
-    let API_URL = `${this.REST_API}/solar-arr`;
-    return this.http.post(API_URL, { headers: this.httpHeaders }).pipe(
+  authentication(userName: string, password: string): Observable<any> {
+    let API_URL = `${this.REST_API}/authentication`;
+    let obj = Object.assign({});
+    obj.userName = userName;
+    obj.password = password;
+    return this.http.post(API_URL, obj, { headers: this.httpHeaders }).pipe(
       map((res: any) => {
         return res || {};
       }),

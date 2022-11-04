@@ -34,6 +34,16 @@ export class LoginComponent implements OnInit {
     let userName = this.loginForm.controls['userNameInput'].value;
     let password = this.loginForm.controls['passwordInput'].value;
 
+    this.dataGetService.authentication(userName, password).subscribe(
+      (data: any)=>{
+        alert('Logged in successfully.');
+      },
+      (err) => {
+        alert('Failed to log in.');
+        console.error(err);
+      }
+    });
+
     this.defaultText = userName;
     this.sharedService.setLastValueInHeader(this.defaultText);
     this.getFilesFromServer();
