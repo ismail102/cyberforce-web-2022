@@ -154,12 +154,8 @@ app.get('/api/files', (req, res) => {
 // Download file
 app.post('/api/file-download', (req, res) => {
   console.log('----->Request: ', req.body.fileDir);
-  if (!err) {
-    console.log('----->File sent successfully from 79.\n');
-    res.sendFile(req.body.fileDir);
-  } else {
-    console.log('----->!Error: ', err);
-  }
+  res.sendFile(req.body.fileDir);
+  console.log('----->File sent successfully from 79.\n');
 });
 
 app.listen(port, function () {
