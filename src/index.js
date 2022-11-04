@@ -97,27 +97,26 @@ app.get('/api/solar-arr', (req, res) => {
   console.log('----->Res: ', res);
   pool1.query('SELECT * from solar_arrays', (err, rows) => {
     if (!err) {
+      console.log('----->Data fetch successfully from 76.\n');
       res.send(rows);
     } else {
       console.log('----->!Error: ', err);
     }
     // if(err) throw err
-    console.log('----->Data fetch successfully from - 76.\n');
   });
 });
 
 // Get all beers
 app.post('/api/contact-info', (req, res) => {
-  console.log('----->Request: ', req.body);
   let query =
     'INSERT INTO contact_info (name, email, phone, filePath) VALUES ?';
   let values = [Object.values(req.body)];
   console.log('----->Values: ', values);
   pool2.query(query, [values], (err, rows) => {
     if (!err) {
-      console.log('----->Rows: ', rows);
-      console.log('----->Data fetch successfully from - 79.\n');
-      res.send('Contact info submitted successfully.');
+      msg = 'Contact info submitted successfully into 79.';
+      console.log(msg);
+      res.send(msg);
     } else {
       console.log('----->!Error: ', err);
     }
