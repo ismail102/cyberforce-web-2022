@@ -109,7 +109,11 @@ app.get('/api/solar-arr', (req, res) => {
 // Get all beers
 app.post('/api/contact-info', (req, res) => {
   console.log('----->Res: ', req);
-  pool2.query('SELECT arrayVoltage from solar_arrays', (err, rows) => {
+  let query =
+    'INSERT INTO contact_info (name, email, phone, filePath) VALUES ?';
+  let values = Object.values(req);
+  console.log('----->Values: ', values);
+  pool2.query(query, [values], (err, rows) => {
     if (!err) {
       console.log('----->Rows: ', rows);
       console.log('----->Data fetch successfully from - 79.\n');
@@ -117,7 +121,6 @@ app.post('/api/contact-info', (req, res) => {
     } else {
       console.log('----->!Error: ', err);
     }
-    // if(err) throw err
   });
 });
 
