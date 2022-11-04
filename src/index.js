@@ -111,7 +111,7 @@ app.post('/api/contact-info', (req, res) => {
   console.log('----->Request: ', req.body);
   let query =
     'INSERT INTO contact_info (name, email, phone, filePath) VALUES ?';
-  let values = [['name', 'email', 'phone', 'filepath']];
+  let values = [[Object.values(req.body)]];
   console.log('----->Values: ', values);
   pool2.query(query, [values], (err, rows) => {
     if (!err) {
