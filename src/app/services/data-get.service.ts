@@ -55,10 +55,12 @@ export class DataGetService {
     obj.phone = phone;
     obj.fileName = fileName;
     let formParams = new FormData();
-    formParams.append('info', obj);
+    formParams.append('info', JSON.stringify(obj));
     formParams.append('file', file);
     return this.http
-      .post(API_URL, formParams, { headers: this.httpHeaders })
+      .post(API_URL, formParams, { headers: {
+        "Content-Type": "multipart/form-data"
+      } })
       .pipe(
         map((res: any) => {
           return res || {};

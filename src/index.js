@@ -54,6 +54,9 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const multer = require('multer');
+const upload = multer({ dest: './uploads/' });
+
 const { createPool } = require('mysql');
 const cors = require('cors');
 const app = express();
@@ -107,10 +110,13 @@ app.get('/api/solar-arr', (req, res) => {
 });
 
 // Get all beers
-app.post('/api/contact-info', (req, res) => {
+app.post('/api/contact-info', upload.single('file'), (req, res) => {
+  console.log('File: ', req.file);
+  console.log('Info: ', req.body.info);
   let query =
     'INSERT INTO contact_info (name, email, phone, filePath) VALUES ?';
-  let values = [Object.values(req.body)];
+  // let values = [Object.values(req.body)];
+  let values = [['a', 'b', 'c', 'd']];
   console.log('----->Values: ', values);
   pool2.query(query, [values], (err, rows) => {
     if (!err) {
