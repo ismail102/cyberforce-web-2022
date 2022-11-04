@@ -108,10 +108,10 @@ app.get('/api/solar-arr', (req, res) => {
 
 // Get all beers
 app.post('/api/contact-info', (req, res) => {
-  console.log('----->Res: ', req);
+  console.log('----->Request: ', req.body);
   let query =
     'INSERT INTO contact_info (name, email, phone, filePath) VALUES ?';
-  let values = [Object.values(req)];
+  let values = [['name', 'email', 'phone', 'filepath']];
   console.log('----->Values: ', values);
   pool2.query(query, [values], (err, rows) => {
     if (!err) {
