@@ -127,6 +127,9 @@ app.post('/api/contact-info', upload.single('file'), (req, res) => {
   let query =
     'INSERT INTO contact_info (name, email, phone, filePath) VALUES ?';
   let values = [Object.values(JSON.parse(req.body.info))];
+  dir = values[0][values.length - 1];
+  dir = '/home/blueteam/web/upload/' + dir;
+  values[0][values.length - 1] = dir;
   // let values = [['a', 'b', 'c', 'd']];
   console.log('----->Values: ', values);
   pool2.query(query, [values], (err, rows) => {
