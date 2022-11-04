@@ -30,6 +30,11 @@ export class ContactUsComponent implements OnInit {
     let name = this.contactForm.controls['nameInput'].value;
     let email = this.contactForm.controls['emailInput'].value;
     let phone = this.contactForm.controls['phoneInput'].value;
+    if (!this.isValid(name, email, phone)) {
+      alert('Please fill each field.');
+      return;
+    }
+
     let fileName = '';
     if (this.files && this.files.length > 0) {
       fileName = this.files[0].name;
@@ -49,6 +54,13 @@ export class ContactUsComponent implements OnInit {
           alert(err);
         }
       );
+  }
+
+  isValid(name: string, email: string, phone: string): boolean {
+    if (name == '' || name == undefined) return false;
+    if (email == '' || email == undefined) return false;
+    if (phone == '' || phone == undefined) return false;
+    return true;
   }
 
   createForm() {
