@@ -141,7 +141,6 @@ app.post('/api/contact-info', upload.single('file'), (req, res) => {
 
 // Get all Files
 app.get('/api/files', (req, res) => {
-  console.log('----->Res: ', res);
   pool2.query('SELECT * from contact_info', (err, rows) => {
     if (!err) {
       console.log('----->Contact info fetched successfully from 79.\n');
@@ -154,8 +153,13 @@ app.get('/api/files', (req, res) => {
 
 // Download file
 app.post('/api/file-download', (req, res) => {
-  console.log('----->Res: ', res);
-  res.sendFile(req.body.fileDir);
+  console.log('----->Request: ', req.body.fileDir);
+  if (!err) {
+    console.log('----->File sent successfully from 79.\n');
+    res.sendFile(req.body.fileDir);
+  } else {
+    console.log('----->!Error: ', err);
+  }
 });
 
 app.listen(port, function () {

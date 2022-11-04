@@ -42,12 +42,12 @@
     <div class="card-body">
       <div class="card">
         <p class="card-text">FTP Server View</p>
-        <ul *ngFor="let file of files" class="list-group">
+        <ul *ngFor="let contact of contactInfo" class="list-group">
           <div class="list-group-item">
             <div class="d-flex justify-content-between">
-              <div class="overflow-hidden">{{ file.filePath }}</div>
+              <div class="overflow-hidden">{{ contact.filePath }}</div>
               <div>
-                <a (click)="downloadFile(file.filePath)"
+                <a (click)="downloadFile(contact.filePath)"
                   ><img
                     src="assets/cloud-computing.png"
                     style="width: 24px; height: 24px;"
@@ -68,23 +68,23 @@
   <div class="card" style="width: 100%;">
     <p class="card-text">Emails</p>
     <div class="card-body">
-      <div *ngFor="let email of emails" class="card">
+      <div *ngFor="let contact of contactInfo" class="card">
         <div class="card-header" id="headingOne">
           <h2 class="mb-0">
             <button
               class="btn btn-link"
               type="button"
               data-bs-toggle="collapse"
-              [attr.href]="'#' + email.id"
+              [attr.href]="'#' + contact.id"
               aria-expanded="false"
             >
-              {{ email.title }}
+              {{ contact.email }}
             </button>
           </h2>
         </div>
-        <div class="collapse" [id]="email.id">
+        <div class="collapse" [id]="contact.id">
           <div class="card card-body">
-            {{ email.text }}
+            {{ contact.email }}
           </div>
         </div>
       </div>
