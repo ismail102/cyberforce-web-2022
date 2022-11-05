@@ -10,19 +10,23 @@ import { SharedService } from '../services/shared.service';
 export class HeaderComponent implements OnInit {
   defaultText: string;
 
-  constructor(private sharedService: SharedService) {}
+  constructor(public sharedService: SharedService) {}
   @ViewChild(LoginComponent) private loginComponent: LoginComponent;
 
   ngOnInit(): void {
-    this.defaultText = 'Login';
-    this.sharedService.user.subscribe((data: string) => {
-      console.log('EventEmitter: ', data);
-      if (data) {
-        this.defaultText = data;
-      } else {
-        this.defaultText = 'Login';
-      }
-    });
+    let userId = this.sharedService.getUserId();
+    if (!userId || userId == '') {
+      this.sharedService.setUserId('Login');
+    }
+    this.defaultText = this.sharedService.getUserId();
+    // this.sharedService.user.subscribe((data: string) => {
+    //   console.log('EventEmitter: ', data);
+    //   if (data) {
+    //     this.defaultText = data;
+    //   } else {
+    //     this.defaultText = 'Login';
+    //   }
+    // });
   }
 
   setDefaultText(data: string) {

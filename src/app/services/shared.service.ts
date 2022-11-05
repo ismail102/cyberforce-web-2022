@@ -12,4 +12,17 @@ export class SharedService {
   setLastValueInHeader(data: string) {
     this.userName.next(data);
   }
+
+  setUserId(userId: string) {
+    localStorage.setItem('userId', userId);
+  }
+
+  getUserId(): string {
+    let userId = localStorage.getItem('userId');
+    if (!userId) {
+      localStorage.setItem('userId', '');
+    }
+    userId = localStorage.getItem('userId');
+    return userId;
+  }
 }

@@ -17,15 +17,19 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private sharedService: SharedService,
+    public sharedService: SharedService,
     private dataGetService: DataGetService,
     private router: Router
   ) {}
 
   @Output() eventEmitter = new EventEmitter<any>();
   ngOnInit(): void {
-    this.defaultText = 'Login';
-    this.sharedService.setLastValueInHeader(this.defaultText);
+    // this.defaultText = 'Login';
+    // this.sharedService.setLastValueInHeader(this.defaultText);
+    let userId = this.sharedService.getUserId();
+    if (!userId || userId == '') {
+      this.sharedService.setUserId('Login');
+    }
     this.loginForm = this.fb.group({
       userNameInput: [''],
       passwordInput: [''],
@@ -36,21 +40,23 @@ export class LoginComponent implements OnInit {
     let userName = this.loginForm.controls['userNameInput'].value;
     let password = this.loginForm.controls['passwordInput'].value;
 
-    this.dataGetService
-      .authentication(userName, password)
-      .subscribe((res: any) => {
-        console.log('Res: ', res);
-        this.defaultText = userName;
-        if (res['msg'] == 'fail') {
-          alert('Failed to Log in.');
-        } else {
-          console.log('User role: ', res['data']);
-          if (res['data'] == 'Admin') {
-            this.defaultText = res['data'];
-          }
-          this.sharedService.setLastValueInHeader(this.defaultText);
-        }
-      });
+    this.sharedService.setUserId(userName);
+
+    // this.dataGetService
+    //   .authentication(userName, password)
+    //   .subscribe((res: any) => {
+    //     console.log('Res: ', res);
+    //     this.defaultText = userName;
+    //     if (res['msg'] == 'fail') {
+    //       alert('Failed to Log in.');
+    //     } else {
+    //       console.log('User role: ', res['data']);
+    //       if (res['data'] == 'Admin') {
+    //         this.defaultText = res['data'];
+    //       }
+    //       this.sharedService.setLastValueInHeader(this.defaultText);
+    //     }
+    //   });
     this.getFilesFromServer();
   }
 
