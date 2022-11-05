@@ -57,12 +57,10 @@ export class LoginComponent implements OnInit {
       .authentication(userName, password)
       .subscribe((res: any) => {
         console.log('Res: ', res);
-        this.sharedService.setUserId(userName);
+        this.sharedService.setUserId('');
         this.sharedService.setUserRole('');
         if (res['msg'] == 'fail') {
           alert('Failed to Log in.');
-          this.sharedService.setUserId('');
-          this.sharedService.setUserRole('');
           this.router.navigate(['/login']);
         } else {
           console.log('User role: ', res['data']);
@@ -71,6 +69,7 @@ export class LoginComponent implements OnInit {
             this.sharedService.setUserRole('Admin');
             this.getFilesFromServer();
           } else {
+            this.sharedService.setUserId(userName);
             this.router.navigate(['/']);
           }
           // this.sharedService.setLastValueInHeader(this.defaultText);
