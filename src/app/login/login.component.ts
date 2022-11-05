@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     this.dataGetService
       .authentication(userName, password)
       .subscribe((res: any) => {
+        console.log('Res: ', res);
         this.defaultText = userName;
         if (userName == 'plank') {
           this.defaultText = 'Admin';
