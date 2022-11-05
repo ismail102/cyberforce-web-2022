@@ -23,7 +23,7 @@ export class DataGetService {
   authentication(userName: string, password: string): Observable<any> {
     let API_URL = `${this.REST_API}/auth`;
     let obj = Object.assign({});
-    password = this.encryptUsingAES256(password);
+    // password = this.encryptUsingAES256(password);
     obj.userName = userName;
     obj.password = password;
     return this.http.post(API_URL, obj, { headers: this.httpHeaders }).pipe(
