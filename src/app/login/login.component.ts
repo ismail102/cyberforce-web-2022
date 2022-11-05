@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
             this.sharedService.setUserRole('Admin');
             this.getFilesFromServer();
           } else {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/']);
           }
           // this.sharedService.setLastValueInHeader(this.defaultText);
         }
