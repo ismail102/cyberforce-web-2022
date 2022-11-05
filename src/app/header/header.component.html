@@ -24,6 +24,13 @@
       {{ sharedService.getUserId() }}
     </button>
     <ul class="dropdown-menu">
+      <li
+        *ngIf="
+          sharedService.getUserRole() && sharedService.getUserRole() === 'Admin'
+        "
+      >
+        <a class="dropdown-item" routerLink="/login">Admin page</a>
+      </li>
       <li><a class="dropdown-item" (click)="logOutUser()">Logout</a></li>
     </ul>
   </div>
