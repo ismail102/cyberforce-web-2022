@@ -29,7 +29,7 @@ export class DataGetService {
     return this.http.post(API_URL, obj, { headers: this.httpHeaders }).pipe(
       map((response: any) => {
         console.log('RESPONSE: ', response);
-        return response.json(); // return
+        return JSON.parse(response); // return
       }),
       catchError(this.handleError)
     );
