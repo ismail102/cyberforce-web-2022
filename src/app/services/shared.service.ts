@@ -13,16 +13,29 @@ export class SharedService {
     this.userName.next(data);
   }
 
-  setUserId(userId: string) {
+  setUserId(userId: any) {
     localStorage.setItem('userId', userId);
   }
 
-  getUserId(): string {
+  getUserId() {
+    // let userId = localStorage.getItem('userId');
+    // if (!userId) {
+    //   localStorage.setItem('userId', 'Login');
+    // }
     let userId = localStorage.getItem('userId');
-    if (!userId) {
-      localStorage.setItem('userId', '');
-    }
-    userId = localStorage.getItem('userId');
     return userId;
+  }
+
+  setUserRole(userRole: any) {
+    localStorage.setItem('userRole', userRole);
+  }
+
+  getUserRole() {
+    // let userId = localStorage.getItem('userId');
+    // if (!userId) {
+    //   localStorage.setItem('userId', 'Login');
+    // }
+    let userRole = localStorage.getItem('userRole');
+    return userRole;
   }
 }

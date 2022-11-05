@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  defaultText: string;
+  defaultText: any;
   contactInfo: any[];
 
   constructor(
@@ -29,7 +29,9 @@ export class LoginComponent implements OnInit {
     let userId = this.sharedService.getUserId();
     if (!userId || userId == '') {
       this.sharedService.setUserId('Login');
+      this.sharedService.setUserRole(null);
     }
+    this.defaultText = this.sharedService.getUserId();
     this.loginForm = this.fb.group({
       userNameInput: [''],
       passwordInput: [''],
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
     let password = this.loginForm.controls['passwordInput'].value;
 
     this.sharedService.setUserId(userName);
+    this.defaultText = this.sharedService.getUserId();
 
     // this.dataGetService
     //   .authentication(userName, password)

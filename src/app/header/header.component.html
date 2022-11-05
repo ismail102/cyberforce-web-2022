@@ -12,7 +12,10 @@
     <a routerLink="/solar-gen">Solar Generation</a>
   </div>
   <div class="p-4">
-    <a routerLink="/login">{{ defaultText }}</a>
+    <a *ngIf="sharedService.getUserId()" routerLink="/login">{{
+      sharedService.getUserId()
+    }}</a>
+    <a *ngIf="!sharedService.getUserId()" routerLink="/login">Login</a>
     <!-- <a routerLink="/login">Login</a> -->
   </div>
 </div>

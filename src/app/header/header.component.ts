@@ -8,7 +8,7 @@ import { SharedService } from '../services/shared.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  defaultText: string;
+  defaultText: any;
 
   constructor(public sharedService: SharedService) {}
   @ViewChild(LoginComponent) private loginComponent: LoginComponent;
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
     // });
   }
 
-  setDefaultText(data: string) {
-    this.defaultText = data;
-  }
+  // setDefaultText(data: string) {
+  //   this.defaultText = data;
+  // }
 }
