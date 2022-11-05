@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
     this.dataGetService.getSolarArr().subscribe(
       (data: any) => {
         this.solarArr = data;
-        // console.log('Data: ', this.solarArr);
       },
       (err) => {
         console.log('!Error: ', err);

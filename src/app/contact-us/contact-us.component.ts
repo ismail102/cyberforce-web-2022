@@ -52,7 +52,7 @@ export class ContactUsComponent implements OnInit {
           this.createForm();
         },
         (err: any) => {
-          alert(err);
+          alert('Thank you!');
         }
       );
   }

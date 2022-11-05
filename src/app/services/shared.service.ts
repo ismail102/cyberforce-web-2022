@@ -14,28 +14,28 @@ export class SharedService {
   }
 
   setUserId(userId: any) {
-    localStorage.setItem('userId', userId);
+    sessionStorage.setItem('userId', userId);
   }
 
   getUserId() {
-    let userId = localStorage.getItem('userId');
+    let userId = sessionStorage.getItem('userId');
     if (!userId || userId == '') {
-      localStorage.setItem('userId', '');
+      sessionStorage.setItem('userId', '');
     }
-    userId = localStorage.getItem('userId');
+    userId = sessionStorage.getItem('userId');
     return userId;
   }
 
   setUserRole(userRole: any) {
-    localStorage.setItem('userRole', userRole);
+    sessionStorage.setItem('userRole', userRole);
   }
 
   getUserRole() {
-    let userRole = localStorage.getItem('userId');
+    let userRole = sessionStorage.getItem('userId');
     if (!userRole || userRole == '') {
-      localStorage.setItem('userId', '');
+      sessionStorage.setItem('userId', '');
     }
-    userRole = localStorage.getItem('userRole');
+    userRole = sessionStorage.getItem('userRole');
     return userRole;
   }
 }
