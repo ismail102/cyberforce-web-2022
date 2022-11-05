@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { DataGetService } from '../services/data-get.service';
 import { SharedService } from '../services/shared.service';
 import { saveAs } from 'file-saver';
-import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -38,17 +37,36 @@ export class LoginComponent implements OnInit {
     this.dataGetService.authentication(userName, password).subscribe(
       (data: any) => {
         alert('Logged in successfully.');
+        this.defaultText = userName;
+        this.sharedService.setLastValueInHeader(this.defaultText);
       },
       (err) => {
         alert('Failed to log in.');
         console.error(err);
       }
     );
-
-    this.defaultText = userName;
-    this.sharedService.setLastValueInHeader(this.defaultText);
     this.getFilesFromServer();
   }
+
+  // tokenFromUI: string = 'System-Unwary-Random-Canister9';
+  // encryptUsingAES256() {
+  //   let data = '5!ys!hhsds';
+  //   let cyp = CryptoJS.AES.encrypt(
+  //     JSON.stringify(data),
+  //     this.tokenFromUI
+  //   ).toString();
+  //   console.log('C: ', cyp);
+  // }
+
+  // decryptUsingAES256() {
+  //   let data = 'U2FsdGVkX1+Wr8nWRxBSB/wzeFbeNPzRuIwjKXp3sE8=';
+
+  //   const bytes = CryptoJS.AES.decrypt(data, this.tokenFromUI);
+  //   if (bytes.toString()) {
+  //     let d = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+  //     console.log('D: ', d);
+  //   }
+  // }
 
   getFilesFromServer() {
     this.dataGetService.getFiles().subscribe((data: any) => {

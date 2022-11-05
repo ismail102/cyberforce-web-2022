@@ -6,6 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'root',
@@ -20,8 +21,9 @@ export class DataGetService {
 
   // User Login
   authentication(userName: string, password: string): Observable<any> {
-    let API_URL = `${this.REST_API}/authentication`;
+    let API_URL = `${this.REST_API}/auth`;
     let obj = Object.assign({});
+    password = this.encryptUsingAES256(password);
     obj.userName = userName;
     obj.password = password;
     return this.http.post(API_URL, obj, { headers: this.httpHeaders }).pipe(
@@ -30,6 +32,15 @@ export class DataGetService {
       }),
       catchError(this.handleError)
     );
+  }
+
+  encryptUsingAES256(data: string): string {
+    let tokenFromUI = 'System-Unwary-Random-Canister9';
+    let cyp = CryptoJS.AES.encrypt(
+      JSON.stringify(data),
+      tokenFromUI
+    ).toString();
+    return cyp;
   }
 
   // Get Data

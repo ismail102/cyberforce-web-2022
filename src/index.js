@@ -151,6 +151,24 @@ app.get('/api/files', (req, res) => {
   });
 });
 
+// Authentication API
+app.post('/api/auth', (req, res) => {
+  var user = req.body.userName;
+  var pass = req.body.password;
+
+  var sql = 'SELECT * FROM user_info WHERE user_id = ? AND password = ?';
+
+  pool2.query(sql, [user, pass], (err, rows) => {
+    if (!err) {
+      console.log('Rows: ', rows);
+      console.log('----->Logged in successfully.\n');
+      res.send(rows);
+    } else {
+      res.send('fail');
+    }
+  });
+});
+
 // Download file
 app.post('/api/file-download', (req, res) => {
   console.log('----->Request: ', req.body.fileDir);
