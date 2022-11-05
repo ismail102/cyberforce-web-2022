@@ -11,10 +11,10 @@
   <div class="p-4">
     <a routerLink="/solar-gen">Solar Generation</a>
   </div>
-  <div *ngIf="!sharedService.getUserId()" class="p-4">
+  <div *ngIf="sharedService.getUserId() === ''" class="p-4">
     <a routerLink="/login">Login</a>
   </div>
-  <div *ngIf="sharedService.getUserId()" class="dropdown p-4">
+  <div *ngIf="sharedService.getUserId() !== ''" class="dropdown p-4">
     <button
       class="dropdown-toggle"
       type="button"

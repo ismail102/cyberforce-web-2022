@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
     // this.sharedService.setLastValueInHeader(this.defaultText);
     let userId = this.sharedService.getUserId();
     if (!userId || userId == '') {
-      this.sharedService.setUserId(null);
-      this.sharedService.setUserRole(null);
+      this.sharedService.setUserId('');
+      this.sharedService.setUserRole('');
     }
     this.defaultText = this.sharedService.getUserId();
     this.loginForm = this.fb.group({
@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
     let password = this.loginForm.controls['passwordInput'].value;
 
     this.sharedService.setUserId(userName);
+    this.sharedService.setUserRole('Admin');
     // this.defaultText = this.sharedService.getUserId();
 
     // this.dataGetService

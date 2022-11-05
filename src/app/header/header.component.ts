@@ -17,25 +17,25 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     let userId = this.sharedService.getUserId();
     if (!userId || userId == '') {
-      this.sharedService.setUserId(null);
-      this.sharedService.setUserRole(null);
+      this.sharedService.setUserId('');
+      this.sharedService.setUserRole('');
     }
-
-    logOutUser() {
-      this.sharedService.setUserId(null);
-      this.sharedService.setUserRole(null);
-      this.router.navigate(['/login']); 
-    }
-
-    // this.sharedService.user.subscribe((data: string) => {
-    //   console.log('EventEmitter: ', data);
-    //   if (data) {
-    //     this.defaultText = data;
-    //   } else {
-    //     this.defaultText = 'Login';
-    //   }
-    // });
   }
+
+  logOutUser() {
+    this.sharedService.setUserId('');
+    this.sharedService.setUserRole('');
+    this.router.navigate(['/login']);
+  }
+
+  // this.sharedService.user.subscribe((data: string) => {
+  //   console.log('EventEmitter: ', data);
+  //   if (data) {
+  //     this.defaultText = data;
+  //   } else {
+  //     this.defaultText = 'Login';
+  //   }
+  // });
 
   // setDefaultText(data: string) {
   //   this.defaultText = data;

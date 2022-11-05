@@ -18,11 +18,11 @@ export class SharedService {
   }
 
   getUserId() {
-    // let userId = localStorage.getItem('userId');
-    // if (!userId) {
-    //   localStorage.setItem('userId', 'Login');
-    // }
     let userId = localStorage.getItem('userId');
+    if (!userId || userId == '') {
+      localStorage.setItem('userId', '');
+    }
+    userId = localStorage.getItem('userId');
     return userId;
   }
 
@@ -31,11 +31,11 @@ export class SharedService {
   }
 
   getUserRole() {
-    // let userId = localStorage.getItem('userId');
-    // if (!userId) {
-    //   localStorage.setItem('userId', 'Login');
-    // }
-    let userRole = localStorage.getItem('userRole');
+    let userRole = localStorage.getItem('userId');
+    if (!userRole || userRole == '') {
+      localStorage.setItem('userId', '');
+    }
+    userRole = localStorage.getItem('userRole');
     return userRole;
   }
 }
