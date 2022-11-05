@@ -44,23 +44,24 @@ export class LoginComponent implements OnInit {
 
     this.sharedService.setUserId(userName);
     this.sharedService.setUserRole('Admin');
-    // this.defaultText = this.sharedService.getUserId();
 
-    // this.dataGetService
-    //   .authentication(userName, password)
-    //   .subscribe((res: any) => {
-    //     console.log('Res: ', res);
-    //     this.defaultText = userName;
-    //     if (res['msg'] == 'fail') {
-    //       alert('Failed to Log in.');
-    //     } else {
-    //       console.log('User role: ', res['data']);
-    //       if (res['data'] == 'Admin') {
-    //         this.defaultText = res['data'];
-    //       }
-    //       this.sharedService.setLastValueInHeader(this.defaultText);
-    //     }
-    //   });
+    this.dataGetService
+      .authentication(userName, password)
+      .subscribe((res: any) => {
+        console.log('Res: ', res);
+        this.sharedService.setUserId(userName);
+        this.sharedService.setUserRole('');
+        if (res['msg'] == 'fail') {
+          alert('Failed to Log in.');
+        } else {
+          console.log('User role: ', res['data']);
+          if (res['data'] == 'Admin') {
+            this.sharedService.setUserId('Admin');
+            this.sharedService.setUserRole('Admin');
+          }
+          // this.sharedService.setLastValueInHeader(this.defaultText);
+        }
+      });
     this.getFilesFromServer();
   }
 
