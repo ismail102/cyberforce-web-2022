@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
             this.defaultText = res['data'];
           }
           this.sharedService.setLastValueInHeader(this.defaultText);
-          this.router.navigate(['/', '']);
         }
       });
     this.getFilesFromServer();

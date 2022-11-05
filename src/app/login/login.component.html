@@ -35,6 +35,21 @@
 </div>
 
 <div
+  *ngIf="defaultText !== 'Login' && defaultText !== 'Admin'"
+  class="container d-flex align-items-center justify-content-center"
+>
+  <div class="card">
+    <div class="card-body">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">Successfully Logged in :)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
   *ngIf="defaultText === 'Admin'"
   class="container d-flex align-items-center justify-content-center"
 >
