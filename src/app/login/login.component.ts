@@ -31,11 +31,8 @@ export class LoginComponent implements OnInit {
       this.sharedService.setUserId('');
       this.sharedService.setUserRole('');
     }
-    this.defaultText = this.sharedService.getUserId();
-    this.loginForm = this.fb.group({
-      userNameInput: [''],
-      passwordInput: [''],
-    });
+    // this.defaultText = this.sharedService.getUserId();
+    this.createFrom();
   }
 
   loginSubmit() {
@@ -76,6 +73,13 @@ export class LoginComponent implements OnInit {
           // this.sharedService.setLastValueInHeader(this.defaultText);
         }
       });
+  }
+
+  createFrom() {
+    this.loginForm = this.fb.group({
+      userNameInput: [''],
+      passwordInput: [''],
+    });
   }
 
   // tokenFromUI: string = 'System-Unwary-Random-Canister9';
