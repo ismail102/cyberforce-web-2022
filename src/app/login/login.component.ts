@@ -61,6 +61,9 @@ export class LoginComponent implements OnInit {
         this.sharedService.setUserRole('');
         if (res['msg'] == 'fail') {
           alert('Failed to Log in.');
+          this.sharedService.setUserId('');
+          this.sharedService.setUserRole('');
+          this.router.navigate(['/login']);
         } else {
           console.log('User role: ', res['data']);
           if (res['data'] == 'Admin') {
