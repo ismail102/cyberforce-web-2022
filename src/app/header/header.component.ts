@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { SharedService } from '../services/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ import { SharedService } from '../services/shared.service';
 export class HeaderComponent implements OnInit {
   defaultText: any;
 
-  constructor(public sharedService: SharedService) {}
+  constructor(public sharedService: SharedService, private router: Router) {}
   @ViewChild(LoginComponent) private loginComponent: LoginComponent;
 
   ngOnInit(): void {
@@ -19,6 +20,13 @@ export class HeaderComponent implements OnInit {
       this.sharedService.setUserId(null);
       this.sharedService.setUserRole(null);
     }
+
+    logOut() {
+      this.sharedService.setUserId(null);
+      this.sharedService.setUserRole(null);
+      this.router.navigate(['/login']); 
+    }
+
     // this.sharedService.user.subscribe((data: string) => {
     //   console.log('EventEmitter: ', data);
     //   if (data) {

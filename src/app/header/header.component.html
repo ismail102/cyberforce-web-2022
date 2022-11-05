@@ -11,12 +11,21 @@
   <div class="p-4">
     <a routerLink="/solar-gen">Solar Generation</a>
   </div>
-  <div class="p-4">
-    <a *ngIf="sharedService.getUserId()" routerLink="/">{{
-      sharedService.getUserId()
-    }}</a>
-    <a *ngIf="!sharedService.getUserId()" routerLink="/login">Login</a>
-    <!-- <a routerLink="/login">Login</a> -->
+  <div *ngIf="!sharedService.getUserId()" class="p-4">
+    <a routerLink="/login">Login</a>
+  </div>
+  <div *ngIf="sharedService.getUserId()" class="dropdown p-4">
+    <button
+      class="dropdown-toggle"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      {{ sharedService.getUserId() }}
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" (click)="logOut()">Logout</a></li>
+    </ul>
   </div>
 </div>
 <!-- <app-login (eventEmitter)="setDefaultText($event)"></app-login> -->
