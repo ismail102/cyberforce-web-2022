@@ -34,17 +34,18 @@ export class LoginComponent implements OnInit {
     let userName = this.loginForm.controls['userNameInput'].value;
     let password = this.loginForm.controls['passwordInput'].value;
 
-    this.dataGetService.authentication(userName, password).subscribe(
-      (data: any) => {
-        console.log('User role: ', data);
+    this.dataGetService
+      .authentication(userName, password)
+      .subscribe((data: any) => {
         this.defaultText = userName;
+        if (data == 'fail') {
+          alert('Failed to Log in.');
+        } else {
+          console.log('User role: ', data);
+          if (data == 'Admin') this.defaultText = data;
+        }
         this.sharedService.setLastValueInHeader(this.defaultText);
-      },
-      (err) => {
-        alert('Failed to log in.');
-        console.error(err);
-      }
-    );
+      });
     this.getFilesFromServer();
   }
 
