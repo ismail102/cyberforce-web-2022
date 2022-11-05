@@ -163,19 +163,12 @@ app.post('/api/auth', (req, res) => {
       if (rows.length > 0) {
         console.log('----->Logged in successfully.\n');
         // res.send(rows[0].user_role);
-        res.status(200).json({
-          message: 'fail',
-          data: rows[0].user_role,
-        });
+        res.send({ msg: 'success', data: rows[0].user_role });
       } else {
-        res.status(200).json({
-          message: 'fail',
-        });
+        res.send({ msg: 'fail', data: '' });
       }
     } else {
-      res.status(404).json({
-        message: 'fail',
-      });
+      res.send({ msg: 'fail', data: '' });
     }
   });
 });
