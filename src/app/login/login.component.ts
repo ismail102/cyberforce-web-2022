@@ -41,17 +41,16 @@ export class LoginComponent implements OnInit {
       .subscribe((res: any) => {
         console.log('Res: ', res);
         this.defaultText = userName;
-        if (userName == 'plank') {
-          this.defaultText = 'Admin';
+        if (res['msg'] == 'fail') {
+          alert('Failed to Log in.');
+        } else {
+          console.log('User role: ', res['data']);
+          if (res['data'] == 'Admin') {
+            this.defaultText = res['data'];
+          }
+          this.sharedService.setLastValueInHeader(this.defaultText);
+          this.router.navigate(['/', '']);
         }
-        this.sharedService.setLastValueInHeader(this.defaultText);
-        this.router.navigate(['/', '']);
-        // if (data['text'] == 'fail') {
-        //   alert('Failed to Log in.');
-        // } else {
-        //   console.log('User role: ', data['text']);
-        //   if (data == 'Admin') this.defaultText = data['text'];
-        // }
       });
     this.getFilesFromServer();
   }
