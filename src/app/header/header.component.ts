@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
       this.sharedService.setUserRole(null);
     }
 
-    logOut() {
+    logOutUser() {
       this.sharedService.setUserId(null);
       this.sharedService.setUserRole(null);
       this.router.navigate(['/login']); 
