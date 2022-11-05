@@ -38,11 +38,11 @@ export class LoginComponent implements OnInit {
       .authentication(userName, password)
       .subscribe((data: any) => {
         this.defaultText = userName;
-        if (data.text == 'fail') {
+        if (data['text'] == 'fail') {
           alert('Failed to Log in.');
         } else {
-          console.log('User role: ', data.text);
-          if (data == 'Admin') this.defaultText = data.text;
+          console.log('User role: ', data['text']);
+          if (data == 'Admin') this.defaultText = data['text'];
         }
         this.sharedService.setLastValueInHeader(this.defaultText);
       });

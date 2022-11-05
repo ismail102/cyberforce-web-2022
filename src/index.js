@@ -151,8 +151,6 @@ app.get('/api/files', (req, res) => {
   });
 });
 
-var crypto = require('crypto');
-var tokenFromUI = 'System-Unwary-Random-Canister9';
 // Authentication API
 app.post('/api/auth', (req, res) => {
   var user = req.body.userName;
@@ -164,12 +162,20 @@ app.post('/api/auth', (req, res) => {
     if (!err) {
       if (rows.length > 0) {
         console.log('----->Logged in successfully.\n');
-        res.send(rows[0].user_role);
+        // res.send(rows[0].user_role);
+        res.status(200).json({
+          message: 'fail',
+          data: rows[0].user_role,
+        });
       } else {
-        res.send('fail');
+        res.status(200).json({
+          message: 'fail',
+        });
       }
     } else {
-      res.send('fail');
+      res.status(404).json({
+        message: 'fail',
+      });
     }
   });
 });
