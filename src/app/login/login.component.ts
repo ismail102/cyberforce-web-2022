@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { DataGetService } from '../services/data-get.service';
 import { SharedService } from '../services/shared.service';
 import { saveAs } from 'file-saver';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,14 @@ export class LoginComponent implements OnInit {
     public sharedService: SharedService,
     private dataGetService: DataGetService,
     private router: Router
-  ) {}
+  ) {
+    this.router.events
+      .filter((event) => event instanceof NavigationEnd)
+      .subscribe((event) => {
+        // this.currentRoute = event.url;
+        console.log(event);
+      });
+  }
 
   @Output() eventEmitter = new EventEmitter<any>();
   ngOnInit(): void {
