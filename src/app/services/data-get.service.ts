@@ -26,7 +26,13 @@ export class DataGetService {
     // password = this.encryptUsingAES256(password);
     obj.userName = userName;
     obj.password = password;
-    return this.http.post(API_URL, obj, { headers: this.httpHeaders });
+    return this.http.post(API_URL, obj, { headers: this.httpHeaders }).pipe(
+      map((response: any) => {
+        console.log('RESPONSE: ', response);
+        return response.json(); // return
+      }),
+      catchError(this.handleError)
+    );
   }
 
   // encryptUsingAES256(data: string): string {
