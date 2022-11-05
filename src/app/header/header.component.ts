@@ -16,9 +16,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     let userId = this.sharedService.getUserId();
     if (!userId || userId == '') {
-      this.sharedService.setUserId('Login');
+      this.sharedService.setUserId(null);
+      this.sharedService.setUserRole(null);
     }
-    this.defaultText = this.sharedService.getUserId();
     // this.sharedService.user.subscribe((data: string) => {
     //   console.log('EventEmitter: ', data);
     //   if (data) {

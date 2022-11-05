@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     // this.sharedService.setLastValueInHeader(this.defaultText);
     let userId = this.sharedService.getUserId();
     if (!userId || userId == '') {
-      this.sharedService.setUserId('Login');
+      this.sharedService.setUserId(null);
       this.sharedService.setUserRole(null);
     }
     this.defaultText = this.sharedService.getUserId();
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     let password = this.loginForm.controls['passwordInput'].value;
 
     this.sharedService.setUserId(userName);
-    this.defaultText = this.sharedService.getUserId();
+    // this.defaultText = this.sharedService.getUserId();
 
     // this.dataGetService
     //   .authentication(userName, password)
