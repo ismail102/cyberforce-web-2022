@@ -9,10 +9,10 @@
 }
 
 .header {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  background-color: yellow;
-  padding: 50px;
-  font-size: 20px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 200px;
+  right: 0px;
+  overflow: hidden;
 }
