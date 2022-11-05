@@ -44,6 +44,15 @@ export class LoginComponent implements OnInit {
     let userName = this.loginForm.controls['userNameInput'].value;
     let password = this.loginForm.controls['passwordInput'].value;
 
+    if (userName || userName == '') {
+      alert('User is invalid.');
+      return;
+    }
+    if (password || password == '') {
+      alert('Password is invalid.');
+      return;
+    }
+
     this.sharedService.setUserId(userName);
     this.sharedService.setUserRole('Admin');
 
