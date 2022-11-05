@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit() {
+    this.contactInfo = [];
+
     let userName = this.loginForm.controls['userNameInput'].value;
     let password = this.loginForm.controls['passwordInput'].value;
 
@@ -59,10 +61,10 @@ export class LoginComponent implements OnInit {
             this.sharedService.setUserId('Admin');
             this.sharedService.setUserRole('Admin');
           }
+          this.getFilesFromServer();
           // this.sharedService.setLastValueInHeader(this.defaultText);
         }
       });
-    this.getFilesFromServer();
   }
 
   // tokenFromUI: string = 'System-Unwary-Random-Canister9';
