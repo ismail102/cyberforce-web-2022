@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { DataGetService } from '../services/data-get.service';
 import { SharedService } from '../services/shared.service';
 import { saveAs } from 'file-saver';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private sharedService: SharedService,
-    private dataGetService: DataGetService
+    private dataGetService: DataGetService,
+    private router: Router
   ) {}
 
   @Output() eventEmitter = new EventEmitter<any>();
@@ -38,14 +40,17 @@ export class LoginComponent implements OnInit {
       .authentication(userName, password)
       .subscribe((res: any) => {
         this.defaultText = userName;
-        console.log('Res: ', res);
+        if (userName == 'plank') {
+          this.defaultText = 'Admin';
+        }
+        this.sharedService.setLastValueInHeader(this.defaultText);
+        this.router.navigate(['/', '']);
         // if (data['text'] == 'fail') {
         //   alert('Failed to Log in.');
         // } else {
         //   console.log('User role: ', data['text']);
         //   if (data == 'Admin') this.defaultText = data['text'];
         // }
-        this.sharedService.setLastValueInHeader(this.defaultText);
       });
     this.getFilesFromServer();
   }
