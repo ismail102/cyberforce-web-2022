@@ -50,8 +50,8 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.sharedService.setUserId(userName);
-    this.sharedService.setUserRole('Admin');
+    // this.sharedService.setUserId(userName);
+    // this.sharedService.setUserRole('Admin');
 
     this.dataGetService
       .authentication(userName, password)
