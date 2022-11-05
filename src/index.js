@@ -151,27 +151,18 @@ app.get('/api/files', (req, res) => {
   });
 });
 
+var crypto = require('crypto');
 var tokenFromUI = 'System-Unwary-Random-Canister9';
 // Authentication API
 app.post('/api/auth', (req, res) => {
   var user = req.body.userName;
   var pass = req.body.password;
 
-  console.log('Password: ', pass);
+  var sql = 'SELECT * FROM user_info WHERE user_id = ? AND password = ?';
 
-  var sql = 'SELECT * FROM user_info WHERE user_id = ?';
-
-  pool2.query(sql, [user], (err, rows) => {
+  pool2.query(sql, [user, pass], (err, rows) => {
     if (!err) {
       console.log('Rows: ', rows);
-      for (var r in rows) {
-        var pwd = r.password;
-        const bytes = CryptoJS.AES.decrypt(pwd, tokenFromUI);
-        if (bytes.toString()) {
-          let d = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-          console.log('Dcrypted pass: ', d);
-        }
-      }
       console.log('----->Logged in successfully.\n');
       res.send(rows);
     } else {

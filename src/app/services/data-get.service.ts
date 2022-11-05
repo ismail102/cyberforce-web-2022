@@ -34,14 +34,14 @@ export class DataGetService {
     );
   }
 
-  encryptUsingAES256(data: string): string {
-    let tokenFromUI = 'System-Unwary-Random-Canister9';
-    let cyp = CryptoJS.AES.encrypt(
-      JSON.stringify(data),
-      tokenFromUI
-    ).toString();
-    return cyp;
-  }
+  // encryptUsingAES256(data: string): string {
+  //   let tokenFromUI = 'System-Unwary-Random-Canister9';
+  //   let cyp = CryptoJS.AES.encrypt(
+  //     JSON.stringify(data),
+  //     tokenFromUI
+  //   ).toString();
+  //   return cyp;
+  // }
 
   // Get Data
   getSolarArr(): Observable<any> {
