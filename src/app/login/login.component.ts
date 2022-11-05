@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 
     this.dataGetService.authentication(userName, password).subscribe(
       (data: any) => {
-        alert('Logged in successfully.');
+        console.log('User role: ', data);
         this.defaultText = userName;
         this.sharedService.setLastValueInHeader(this.defaultText);
       },

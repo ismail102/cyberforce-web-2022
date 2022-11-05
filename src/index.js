@@ -162,9 +162,12 @@ app.post('/api/auth', (req, res) => {
 
   pool2.query(sql, [user, pass], (err, rows) => {
     if (!err) {
-      console.log('Rows: ', rows);
-      console.log('----->Logged in successfully.\n');
-      res.send(rows);
+      if (rows.length > 0) {
+        console.log('----->Logged in successfully.\n');
+        res.send(rows[0].user_role);
+      } else {
+        res.send('fail');
+      }
     } else {
       res.send('fail');
     }
